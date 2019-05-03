@@ -11,7 +11,7 @@ CREATE TABLE `train_info` (
   `start_time` varchar(32) DEFAULT NULL COMMENT '发车时间',
   `arrival_time` varchar(32) DEFAULT NULL COMMENT '到头时间',
   `type` varchar(4) DEFAULT NULL COMMENT '车型',
-  `runtime` varchar(4) DEFAULT NULL COMMENT '车行小时',
+  `runtime` varchar(8) DEFAULT NULL COMMENT '车行小时',
   `mile` varchar(12) NULL DEFAULT NULL COMMENT '英里',
   `create_user` varchar(50) DEFAULT NULL COMMENT '创建人',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
