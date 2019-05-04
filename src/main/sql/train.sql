@@ -101,3 +101,74 @@ VALUES ('admin', 'admin',  '张三丰', '13167876788', '北京东城区', '1990-
 ('apple', 'apple',  '乔峰', '15900098734', '广州白云区', '1991-04-20 16:58:41'), 
 ('mali', 'mali', '马夫人', '15900098734', '广州白云区', '1991-04-20 16:58:41');
 COMMIT;
+
+
+
+DROP TABLE IF EXISTS `sys_menu`;
+CREATE TABLE `sys_menu` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `parent_id` varchar(64) NOT NULL COMMENT '父级编号',
+  `parent_ids` varchar(2000) NOT NULL COMMENT '所有父级编号',
+  `name` varchar(100) NOT NULL COMMENT '名称',
+  `sort` varchar(10) DEFAULT NULL COMMENT '排序',
+  `href` varchar(2000) DEFAULT NULL COMMENT '链接',
+  `href_type` varchar(20) DEFAULT 'other' COMMENT '链接类型',
+  `target` varchar(20) DEFAULT NULL COMMENT '目标',
+  `icon` varchar(100) DEFAULT NULL COMMENT '图标',
+  `is_show` char(1) NOT NULL COMMENT '是否在菜单中显示',
+  `permission` varchar(200) DEFAULT NULL COMMENT '权限标识',
+  `create_by` varchar(64) NOT NULL COMMENT '创建者',
+  `create_date` datetime NOT NULL COMMENT '创建时间',
+  `update_by` varchar(64) NOT NULL COMMENT '更新者',
+  `update_date` datetime NOT NULL COMMENT '更新时间',
+  `remarks` varchar(255) DEFAULT NULL COMMENT '备注信息',
+  `del_flag` char(1) NOT NULL DEFAULT '0' COMMENT '删除标记',
+  `version` varchar(50) DEFAULT NULL COMMENT '版本号',
+  PRIMARY KEY (`id`),
+  KEY `sys_menu_parent_id` (`parent_id`) USING BTREE,
+  KEY `sys_menu_del_flag` (`del_flag`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='菜单表';
+
+
+DROP TABLE IF EXISTS `sys_role`;
+CREATE TABLE `sys_role` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL COMMENT '角色名称',
+  `enname` varchar(255) DEFAULT NULL COMMENT '英文名称',
+  `role_type` varchar(255) DEFAULT NULL COMMENT '角色类型',
+  `data_scope` char(1) DEFAULT NULL COMMENT '数据范围',
+  `is_sys` varchar(64) DEFAULT NULL COMMENT '是否系统数据',
+  `useable` varchar(64) DEFAULT NULL COMMENT '是否可用',
+  `create_by` varchar(64) NOT NULL COMMENT '创建者',
+  `create_date` datetime NOT NULL COMMENT '创建时间',
+  `update_by` varchar(64) NOT NULL COMMENT '更新者',
+  `update_date` datetime NOT NULL COMMENT '更新时间',
+  `remarks` varchar(255) DEFAULT NULL COMMENT '备注信息',
+  `del_flag` char(1) NOT NULL DEFAULT '0' COMMENT '删除标记',
+  `version` varchar(50) DEFAULT NULL COMMENT '版本号',
+  PRIMARY KEY (`id`),
+  KEY `sys_role_del_flag` (`del_flag`) USING BTREE,
+  KEY `sys_role_enname` (`enname`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='角色表';
+
+
+CREATE TABLE `sys_role_menu` (
+  `role_id` int(11) NOT NULL COMMENT '角色编号',
+  `menu_id` int(11) NOT NULL COMMENT '菜单编号',
+  PRIMARY KEY (`role_id`,`menu_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='角色-菜单';
+
+CREATE TABLE `sys_user_role` (
+  `user_id` int(11) NOT NULL COMMENT '用户编号',
+  `role_id` int(11) NOT NULL COMMENT '菜单编号',
+  PRIMARY KEY (`user_id`,`menu_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户-角色';
+
+
+CREATE TABLE `sys_user_menu` (
+  `user_id` int(11) NOT NULL COMMENT '用户编号',
+  `menu_id` int(11) NOT NULL COMMENT '菜单编号',
+  PRIMARY KEY (`user_id`,`menu_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户-菜单';
+
+
