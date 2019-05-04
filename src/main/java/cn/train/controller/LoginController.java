@@ -39,22 +39,22 @@ public class LoginController {
 		if(user == null || "".equals(user)){
 			return "noData";
 		}else{
-			JSONObject userObject = JSONObject.fromObject(user);
-			
-			@SuppressWarnings("static-access")
-			User userObj = (User) userObject.toBean(userObject, User.class);
 			try {
-				if(userService.getLoginUser(userObj) == null){
+				JSONObject userObject = JSONObject.fromObject(user);
+				
+				@SuppressWarnings("static-access")
+				User userObj = (User) userObject.toBean(userObject, User.class);
+				/*if(userService.getLoginUser(userObj) == null){
 					return "noUsername";
+				}else{*/
+				User _user = userService.getLoginUser(userObj);
+				if(_user != null){
+					session.setAttribute("user", _user);
+					return "success";
 				}else{
-					User _user = userService.getLoginUser(userObj);
-					if(_user != null){
-						session.setAttribute("user", _user);
-						return "success";
-					}else{
-						return "pwdError";
-					}
+					return "noUsername";
 				}
+//				}
 			} catch (Exception e) {
 				e.printStackTrace();
 				return "failed";

@@ -31,6 +31,7 @@
 							<th>真实姓名</th>
 							<th>电话</th>
 							<th>地址</th>
+							<th>生日</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -42,6 +43,8 @@
 								<td>${user.realname }</td>
 								<td>${user.telphone }</td>
 								<td>${user.address }</td>
+								<td>${user.birthdayStr}</td>
+								
 							</tr >
 						</c:forEach>
 					</tbody>

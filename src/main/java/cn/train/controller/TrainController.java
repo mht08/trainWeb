@@ -73,7 +73,7 @@ public class TrainController {
 	//火车信息详情的请求处理
 	@RequestMapping(value="backend/getTrain.html", produces = {"text/html;charset=UTF-8"})
 	@ResponseBody
-	public Object getTrain(@RequestParam(value="id",required=false) String id){
+	public Object getTrain(@RequestParam(value="id",required=false) String id,@RequestParam String fs){
 		String cjson = "";
 		if(null == id || "".equals(id)){
 			return "nodata";

@@ -2,6 +2,8 @@ package cn.train.entity;
 
 import java.util.Date;
 
+import cn.train.utils.DateUtil;
+
 /*
  * @ Copyright (c) Create by JASON  Date:2018-04-14  All rights reserved.
  *
@@ -23,6 +25,9 @@ public class User {
 	private String updateTime;
 	private String version;
 	private String delFalg;
+	
+	@SuppressWarnings("unused")
+	private String birthdayStr;
 	
 	public String getUsername() {
 		return username;
@@ -102,7 +107,10 @@ public class User {
 	public void setDelFalg(String delFalg) {
 		this.delFalg = delFalg;
 	}
-
+	
+	public String getBirthdayStr() {
+		return DateUtil.formatDate(getBirthday(), DateUtil.FMT);
+	}
 }
 
 

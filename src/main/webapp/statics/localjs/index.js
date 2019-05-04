@@ -30,7 +30,6 @@ $("#loginBtn").click(function() {
 				$("#mylogin-tip").html("登录失败，请重试error!");
 			},
 			success : function(result) {
-				console.log(result);
 				if (result == "success") {
 					window.location.href = "main.html";
 				} else if (result == "failed") {

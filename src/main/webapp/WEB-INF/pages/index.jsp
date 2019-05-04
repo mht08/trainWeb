@@ -102,8 +102,4 @@ body {
 	</div><!--/.fluid-container-->
 
 
-
-
-
-
 <%@include file="/WEB-INF/pages/common/foot.jsp"%>

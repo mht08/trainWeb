@@ -44,7 +44,10 @@ $('.viewtrain').click(function(e){
 	$.ajax({
 		url: 'backend/getTrain.html',
 		type: 'POST',
-		data: {id:m_id},
+		data: {
+			id:m_id,
+			fs:m_id
+			},
 		dataType: 'html',
 		timeout: 1000,
 		error: function(){
@@ -167,32 +170,32 @@ $('#addTrainBtn').click(function(e){
 function addTrainFunction(){
 	$("#add_formtip").html("");
 	var result = true;
-	if($("#a_trainNo").val() == ""){
+	if($("#train_no").val() == ""){
 		$("#add_formtip").css("color","red");
 		$("#add_formtip").append("<li>对不起，车次不能为空。</li>");
 		result = false;
 	}
-	if($("#a_trainStartStation").val() == ""){
+	if($("#start_station").val() == ""){
 		$("#add_formtip").css("color","red");
 		$("#add_formtip").append("<li>对不起，发车不能为空。</li>");
 		result = false;
 	}
-	if($("#a_trainArrStation").val() == ""){
+	if($("#arrival_station").val() == ""){
 		$("#add_formtip").css("color","red");
 		$("#add_formtip").append("<li>对不起，到达不能为空。</li>");
 		result = false;
 	}
-	if($("#a_trainStartTime").val() == ""){
+	if($("#start_time").val() == ""){
 		$("#add_formtip").css("color","red");
 		$("#add_formtip").append("<li>对不起，发时不能为空。</li>");
 		result = false;
 	}
-	if($("#a_trainArrTime").val() == ""){
+	if($("#arrival_time").val() == ""){
 		$("#add_formtip").css("color","red");
 		$("#add_formtip").append("<li>对不起，到时不能为空。</li>");
 		result = false;
 	}
-	if($("#a_trainType").val() == ""){
+	if($("#type").val() == ""){
 		$("#add_formtip").css("color","red");
 		$("#add_formtip").append("<li>对不起，车型不能为空。</li>");
 		result = false;
@@ -202,14 +205,14 @@ function addTrainFunction(){
 }
 
 $('.addtraincancel').click(function(e) {
-	$('#a_trainNo').val('');
-	$('#a_trainMile').val('');
-	$('#a_trainStartStation').val('');
-	$('#a_trainArrStation').val('');
-	$('#a_trainStartTime').val('');
-	$('#a_trainArrTime').val('');
-	$('#a_trainType').val('');
-	$('#a_trainRuntime').val('');
+	$('#train_no').val('');
+	$('#start_station').val('');
+	$('#arrival_station').val('');
+	$('#start_time').val('');
+	$('#arrival_time').val('');
+	$('#type').val('');
+	$('#mile').val('');
+	$('#runtime').val('');
 });
 
 
