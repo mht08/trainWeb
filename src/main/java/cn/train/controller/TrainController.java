@@ -83,7 +83,6 @@ public class TrainController {
 				train = trainService.getTraininfoDetail(Integer.parseInt(id));
 				JSONObject jo = JSONObject.fromObject(train);
 				cjson = jo.toString();
-				
 			}  catch (Exception e) {
 				e.printStackTrace();
 				return "failed";
