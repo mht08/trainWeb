@@ -152,19 +152,21 @@ CREATE TABLE `sys_role` (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='角色表';
 
 
+DROP TABLE IF EXISTS `sys_role_menu`;
 CREATE TABLE `sys_role_menu` (
   `role_id` int(11) NOT NULL COMMENT '角色编号',
   `menu_id` int(11) NOT NULL COMMENT '菜单编号',
   PRIMARY KEY (`role_id`,`menu_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='角色-菜单';
 
+DROP TABLE IF EXISTS `sys_user_role`;
 CREATE TABLE `sys_user_role` (
   `user_id` int(11) NOT NULL COMMENT '用户编号',
   `role_id` int(11) NOT NULL COMMENT '菜单编号',
-  PRIMARY KEY (`user_id`,`menu_id`)
+  PRIMARY KEY (`user_id`,`role_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户-角色';
 
-
+DROP TABLE IF EXISTS `sys_user_menu`;
 CREATE TABLE `sys_user_menu` (
   `user_id` int(11) NOT NULL COMMENT '用户编号',
   `menu_id` int(11) NOT NULL COMMENT '菜单编号',
