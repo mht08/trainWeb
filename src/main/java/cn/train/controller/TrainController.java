@@ -5,6 +5,7 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,6 +26,8 @@ import net.sf.json.JSONObject;
  */
 @Controller
 public class TrainController {
+	private Logger logger = Logger.getLogger(this.getClass());
+	
 	@Resource
 	@Qualifier("trainService")
 	private TrainService trainService;
@@ -74,6 +77,7 @@ public class TrainController {
 	@RequestMapping(value="backend/getTrain.html", produces = {"text/html;charset=UTF-8"})
 	@ResponseBody
 	public Object getTrain(@RequestParam(value="id",required=false) String id){
+		logger.info("getTrain id=" +id);
 		String cjson = "";
 		if(null == id || "".equals(id)){
 			return "nodata";
