@@ -96,14 +96,14 @@ body {
 					onclick="$('#test1').toggle(500);">后台管理</li>
 				<li>
 					<ul class="nav nav-tabs nav-stacked" id="test1">
-						<li><a class="ajax-link" href="backend/trainList.html"><i class="icon-home"></i>
+						<li><a class="ajax-link" href="train/backend/trainList.html"><i class="icon-home"></i>
 						    <span class="hidden-tablet">火车信息管理</span></a></li>
-						<li><a class="ajax-link" href="backend/userList.html"><i class="icon-home"></i>
+						<li><a class="ajax-link" href="user/backend/userList.html"><i class="icon-home"></i>
 						    <span class="hidden-tablet">用户信息管理</span></a></li>
-						<li><a class="ajax-link" href="javascript:void();"><i class="icon-home"></i>
-						    <span class="hidden-tablet">xxx信息管理</span></a></li>
-						<li><a class="ajax-link" href="javascript:void();"><i class="icon-home"></i>
-						    <span class="hidden-tablet">xxx信息管理</span></a></li>
+						<li><a class="ajax-link" href="menu/backend/menuList.html"><i class="icon-home"></i>
+						    <span class="hidden-tablet">菜单信息管理</span></a></li>
+						<li><a class="ajax-link" href="role/backend/roleList.html""><i class="icon-home"></i>
+						    <span class="hidden-tablet">角色信息管理</span></a></li>
 						<li><a class="ajax-link" href="javascript:void();"><i class="icon-home"></i>
 						    <span class="hidden-tablet">xxx信息管理</span></a></li>
 						<li><a class="ajax-link" href="javascript:void();"><i class="icon-home"></i>

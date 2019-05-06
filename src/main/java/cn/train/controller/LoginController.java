@@ -23,6 +23,7 @@ import net.sf.json.JSONObject;
  *
  */
 @Controller
+
 public class LoginController {
 	private Logger logger = Logger.getLogger(LoginController.class);
 	

@@ -1,4 +1,4 @@
-package cn.train.controller;
+ package cn.train.controller;
 
 import java.util.List;
 
@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +15,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import cn.train.entity.Menu;
 import cn.train.entity.Traininfo;
+import cn.train.entity.User;
+import cn.train.service.MenuService;
 import cn.train.service.TrainService;
 import net.sf.json.JSONObject;
 
@@ -25,67 +29,47 @@ import net.sf.json.JSONObject;
  *
  */
 @Controller
-@RequestMapping("/train")
-public class TrainController {
-	private Logger logger = Logger.getLogger(this.getClass());
+@RequestMapping("/menu")
+public class MenuController {
+	private Logger logger = Logger.getLogger(MenuController.class);
 	
-	@Resource
-	@Qualifier("trainService")
-	private TrainService trainService;
+	@Autowired
+	private MenuService menuService;
 	
 	//火车信息列表的请求处理
-	@RequestMapping("backend/trainList.html")
+	@RequestMapping("backend/menuList.html")
 	public String totrainListPage(Model model,HttpSession session){
 		
 		Object userObj = session.getAttribute("user");
 		if(userObj != null){
-			List<Traininfo> trainList;
+			List<Menu> menuList;
 			try {
-				trainList = trainService.getTraininfoList();
-				model.addAttribute("trainList", trainList);
+				menuList =  menuService.getMenuList();
+				model.addAttribute("menuList", menuList);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 			
-			return "backend/trainList";
+			return "backend/menuList";
 		}else{
 			return "redirect:/";
 		}
 	}
 	
-	//添加火车信息的请求处理
-	@RequestMapping(value="backend/addTrain.html",method=RequestMethod.POST)
-	public String addTrainPage(HttpSession session,Traininfo addTraininfo){
-		
-		Object userObj = session.getAttribute("user");
-		if(userObj != null){
-			try {
-				trainService.addTraininfo(addTraininfo);
-				System.out.println(addTraininfo.getArrival_station()+"\n\n\n");
-				System.out.println(addTraininfo.getMile()+"\n\n\n");
-				System.out.println(addTraininfo.getTrain_no()+"\n\n\n");
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			
-			return "redirect:/train/backend/trainList.html";
-		}else{
-			return "redirect:/";
-		}
-	}
+
 	
-	//火车信息详情的请求处理
-	@RequestMapping(value="backend/getTrain.html", produces = {"text/html;charset=UTF-8"})
+	//菜单信息详情的请求处理
+	@RequestMapping(value="backend/getMenu.html", produces = {"text/html;charset=UTF-8"})
 	@ResponseBody
 	public Object getTrain(@RequestParam(value="id",required=false) String id){
-		logger.info("getTrain id=" +id);
+		logger.info("getMenu id=" +id);
 		String cjson = "";
 		if(null == id || "".equals(id)){
 			return "nodata";
 		}else{
 			try {
-				Traininfo train = new Traininfo();
-				train = trainService.getTraininfoDetail(Integer.parseInt(id));
+				Menu train = new Menu();
+				train = menuService.getMenuById(Integer.parseInt(id));
 				JSONObject jo = JSONObject.fromObject(train);
 				cjson = jo.toString();
 			}  catch (Exception e) {
@@ -97,7 +81,7 @@ public class TrainController {
 	}
 	
 	//删除火车信息的请求处理
-	@RequestMapping("delete.html")
+	@RequestMapping("delete1.html")
 	@ResponseBody
 	public String doDeleteTraininfo(Model model,@RequestParam String ids){
 		
@@ -105,7 +89,7 @@ public class TrainController {
 		if(null != ids && !"".equals(ids)){
 			String[] selectTrainNos = ids.split(" ");
 			try {
-				flag = trainService.deleteTraininfoByids(selectTrainNos);
+				flag = menuService.deletemenuByids(selectTrainNos);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -117,6 +101,25 @@ public class TrainController {
 			return "failed";
 		}
 	}
+	
+	//添加菜单信息的请求处理
+		@RequestMapping(value="backend/addMenu.html",method=RequestMethod.POST)
+		public String addTrainPage(HttpSession session,Menu menu){
+			
+			Object userObj = session.getAttribute("user");
+			if(userObj != null){
+				try {
+					menuService.addMenu(menu);
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				
+				return "redirect:/menu/backend/menuList.html";
+			}else{
+				return "redirect:/";
+			}
+		}
 
 }
 

@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import cn.train.dao.UserDao;
+
 import cn.train.entity.User;
 import cn.train.service.UserService;
 
@@ -30,7 +31,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public int addUser(User user) throws Exception {
+	public Integer addUser(User user) throws Exception {
 		return userDao.addUser(user);
 	}
 
@@ -40,10 +41,22 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User getUserById(int id) throws Exception{
-		return userDao.getUserById(id);
+	public Integer deleteUserByids(String[] selectIds) throws Exception {
+		int num = 0;
+		for(int i = 0; i < selectIds.length; i++){
+			num += userDao.delUserById(Integer.parseInt(selectIds[i]));
+		}
+		return num;
 	}
 
+	@Override
+	public User getUserById(int id) throws Exception {
+		//service没有保存好了
+		// TODO Auto-generated method stub
+		return userDao.getUserById(id);
+	}
+	
+	
 }
 
 

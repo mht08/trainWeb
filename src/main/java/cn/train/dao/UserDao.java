@@ -2,6 +2,7 @@ package cn.train.dao;
 
 import java.util.List;
 
+import cn.train.entity.Menu;
 import cn.train.entity.User;
 
 /*
@@ -15,13 +16,16 @@ public interface UserDao {
 	public User getLoginUser(User user) throws Exception;
 	
 	//注册用户
-	public int addUser(User user) throws Exception;
+	public Integer addUser(User user) throws Exception;
+	
+	// 根据id获取用户
+		public User getUserById(int id);
 	
 	//获取所有用户
 	public List<User> getUserList();
 	
 	//根据id获取用户
-	public User getUserById(int id);
+	public Integer delUserById(int id);
 
 }
 

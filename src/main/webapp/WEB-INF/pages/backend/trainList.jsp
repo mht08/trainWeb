@@ -54,7 +54,7 @@
 </div>
 
 
-<!-- 查看火车信息 -->
+<!-- 查看火车详信息 -->
 <div class="modal hide fade" id="viewTrainModal">
 	<div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal">×</button>
@@ -135,6 +135,6 @@
 	<!-- </form> -->
 </div>
 
-
-
 <%@include file="/WEB-INF/pages/common/foot.jsp"%>
+<script src="statics/localjs/train.js"></script>		
+

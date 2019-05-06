@@ -2,6 +2,7 @@ package cn.train.service;
 
 import java.util.List;
 
+import cn.train.entity.Menu;
 import cn.train.entity.User;
 
 /*
@@ -16,14 +17,16 @@ public interface UserService {
 	public User getLoginUser(User user) throws Exception;
 	
 	//注册用户
-	public int addUser(User user) throws Exception;
+	public Integer addUser(User user) throws Exception;
 	
 	//获取所有用户
 	public List<User> getUserList() throws Exception;
 	
-	//根据id获取用户
+	//根据id 删除用户
+	public Integer deleteUserByids(String[] selectIds) throws Exception;
+	
+	//根据id 查询用户
 	public User getUserById(int id) throws Exception;
-
 }
 
 

@@ -33,6 +33,7 @@ import org.apache.commons.lang.StringUtils;
 public class DateUtil {
 
 	public static String FMT = "yyyy-MM-dd HH:mm:ss";
+	public static String FMT_YYY_MM_DD = "yyyy-MM-dd";
 
 	/**
 	 * 格式化日期

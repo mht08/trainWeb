@@ -33,7 +33,7 @@
 		<div class="box span12">
 			<div class="box-header well" data-original-title>
 				<h2>
-					<i class="icon-th"></i> xxx信息概览
+					<i class="icon-th"></i> 菜单信息概览
 				</h2>
 			</div>
 			<div class="box-content"><br><br></div>

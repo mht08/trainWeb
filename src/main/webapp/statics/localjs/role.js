@@ -1,4 +1,4 @@
-$("#myDelTrainBtn").click(function(){
+$("#myDelRoleBtn").click(function(){
 	 var trs = $("table").find("tr"); //获取表格每一行
 	 var selectIds = "";
 	    trs.each(function() {  // 遍历
@@ -12,76 +12,37 @@ $("#myDelTrainBtn").click(function(){
     		
     	  	$.ajax({
     			type: "POST",
-    			url: "delete.html",
+    			url: "role/delete.html",
     			data: {"ids":selectIds},
     			dataType: "html",
     	  		timeout:1000,
     			error: function () {
     			   alert("删除失败error");
-    				window.location.href = "backend/trainList.html";
+    				window.location.href = "role/backend/roleList.html";
     	        },
     	        success: function(result){
     	        	if(result == "success"){
-    	 			   window.location.href = "backend/trainList.html";
-    	 			  alert("车次"+selectIds+"删除成功了");
+    	 			   window.location.href = "role/backend/roleList.html";
+    	 			  alert("编号"+selectIds+"删除成功了");
     	        	}else if(result == "failed"){
-    	        		window.location.href = "backend/trainList.html";
+    	        		window.location.href = "role/backend/roleList.html";
     	        		 alert("删除失败");
     	        	}
     	        },
     		});
     	  	
     	}else{
-	    	alert("请选择车次");
+	    	alert("请选择编号");
 	    }
 	    
 });
 
 
 
-$('.viewtrain').click(function(e){
+$('.viewrole').click(function(e){
 	var m_id = $(this).attr('id');
 	$.ajax({
-		url: 'backend/getTrain.html',
-		type: 'POST',
-		data: {
-			id:m_id,
-			fs:m_id
-			},
-		dataType: 'html',
-		timeout: 1000,
-		error: function(){
-			alert("error");
-		},
-		success:function(result){
-			if("failed" == result){
-				alert("操作超时！");
-			}else if("nodata" == result){
-				alert("没有数据！");
-			}else{
-				m = eval('(' + result + ')');
-				$("#trainNo").html(m.train_no);
-				$("#trainStartStation").html(m.start_station);
-				$("#trainAarrivalStation").html(m.arrival_station);
-				$("#trainStartTime").html(m.start_time);
-				$("#trainAarrivalTime").html(m.arrival_time);
-				$("#trainType").html(m.type);
-				$("#trainRuntime").html(m.runtime);
-				$("#trainMile").html(m.mile);
-			}
-		}
-	});
-	
-	e.preventDefault();
-	$('#viewTrainModal').modal('show');
-});
-
-
-
-$('.viewuser').click(function(e){
-	var m_id = $(this).attr('id');
-	$.ajax({
-		url: 'backend/getUser.html',
+		url: 'role/backend/getRole.html',
 		type: 'POST',
 		data: {id:m_id},
 		dataType: 'html',
@@ -96,21 +57,22 @@ $('.viewuser').click(function(e){
 				alert("没有数据！");
 			}else{
 				m = eval('(' + result + ')');
-				$("#userId").html(m.id);
-				$("#userUsername").html(m.username);
-				$("#userPassword").html(m.password);
-				$("#userRealname").html(m.realname);
-				$("#userBirth").html(m.birthday);
-				$("#userTelphone").html(m.telphone);
-				$("#userAddress").html(m.address);
+				console.log(m);
+				$("#edit_name").html(m.name);
+				$("#edit_enname").html(m.enname);
+				$("#edit_isSys").html(m.isSys);
 				
 			}
 		}
 	});
 	
 	e.preventDefault();
-	$('#myUserModal').modal('show');
+	$('#viewRoleModal').modal('show');
 });
+
+
+
+
 
 //Date日期类型以json形式显示到前台时，显示为[object Object]问题
 //解决方法二：在js中转换
@@ -132,70 +94,82 @@ $('.viewuser').click(function(e){
 //
 //}
 
-$('.addTrain').click(function(e){
+$('.addRole').click(function(e){
 	$("#add_formtip").html('');
 	e.preventDefault();
-	$('#addTrainDiv').modal('show');
+	$('#addRoleDiv').modal('show');
 });
 
 
 
-$('#addTrainBtn').click(function(e){
-	if(addTrainFunction()) {
+$('#addRoleBtn').click(function(e){
+	if(addRoleFunction()) {
 		$.ajax({
 			type : "POST",
-			url : "backend/addTrain.html",
+			url : "role/backend/addRole.html",
 			data : {
-				train_no : $.trim($("#train_no").val()),
-				start_station : $.trim($("#start_station").val()),
-				arrival_station : $.trim($("#arrival_station").val()),
-				start_time : $.trim($("#start_time").val()),
-				arrival_time : $.trim($("#arrival_time").val()),
-				type : $.trim($("#type").val()),
-				runtime : $.trim($("#runtime").val())
+				name : $.trim($("#name").val()),
+				enname : $.trim($("#enname").val()),
+				roleType : $.trim($("#roleType").val()),
+				dataScope : $.trim($("#dataScope").val()),
+				createDateStr : $.trim($("#createDateStr").val()),
+				createBy : $.trim($("#createBy").val()),
+				isSys : $.trim($("#isSys").val()),
+				useable : $.trim($("#useable").val())
+				
 			},
 			dataType : "html",
 			timeout : 1000,
 			error : function() {
 			},
 			success : function(result) {
-				$('#addTrainDiv').modal('hide');
-				window.location.href = "backend/trainList.html";
+				$('#addRoleDiv').modal('hide');
+				window.location.href = "role/backend/roleList.html";
 			},
 		});
 	}
 });
 
 
-function addTrainFunction(){
+function addRoleFunction(){
 	$("#add_formtip").html("");
 	var result = true;
-	if($("#train_no").val() == ""){
+	if($("#name").val() == ""){
 		$("#add_formtip").css("color","red");
 		$("#add_formtip").append("<li>对不起，车次不能为空。</li>");
 		result = false;
 	}
-	if($("#start_station").val() == ""){
+	if($("#enname").val() == ""){
 		$("#add_formtip").css("color","red");
 		$("#add_formtip").append("<li>对不起，发车不能为空。</li>");
 		result = false;
 	}
-	if($("#arrival_station").val() == ""){
+	if($("#roleType").val() == ""){
 		$("#add_formtip").css("color","red");
 		$("#add_formtip").append("<li>对不起，到达不能为空。</li>");
 		result = false;
 	}
-	if($("#start_time").val() == ""){
+	if($("#dataScope").val() == ""){
 		$("#add_formtip").css("color","red");
 		$("#add_formtip").append("<li>对不起，发时不能为空。</li>");
 		result = false;
 	}
-	if($("#arrival_time").val() == ""){
+	if($("#createDateStr").val() == ""){
 		$("#add_formtip").css("color","red");
 		$("#add_formtip").append("<li>对不起，到时不能为空。</li>");
 		result = false;
 	}
-	if($("#type").val() == ""){
+	if($("#createBy").val() == ""){
+		$("#add_formtip").css("color","red");
+		$("#add_formtip").append("<li>对不起，车型不能为空。</li>");
+		result = false;
+	}
+	if($("#isSys").val() == ""){
+		$("#add_formtip").css("color","red");
+		$("#add_formtip").append("<li>对不起，车型不能为空。</li>");
+		result = false;
+	}
+	if($("#useable").val() == ""){
 		$("#add_formtip").css("color","red");
 		$("#add_formtip").append("<li>对不起，车型不能为空。</li>");
 		result = false;
@@ -204,17 +178,16 @@ function addTrainFunction(){
 	return result;
 }
 
-$('.addtraincancel').click(function(e) {
-	$('#train_no').val('');
-	$('#start_station').val('');
-	$('#arrival_station').val('');
-	$('#start_time').val('');
-	$('#arrival_time').val('');
-	$('#type').val('');
-	$('#mile').val('');
-	$('#runtime').val('');
+$('.addrolecancel').click(function(e) {
+	$('#name').val('');
+	$('#enname').val('');
+	$('#roleType').val('');
+	$('#dataScope').val('');
+	$('#createDateStr').val('');
+	$('#createBy').val('');
+	$('#isSys').val('');
+	$('#useable').val('');
 });
-
 
 
 

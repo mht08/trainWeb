@@ -4,13 +4,17 @@
 
 	<!-- 类型起别名 -->
 	<typeAliases>
-	  <typeAlias type="cn.train.entity.Traininfo" alias="Traininfo"/>
-	  <typeAlias type="cn.train.entity.User" alias="User"/>
-	</typeAliases> 
-	
+		<typeAlias type="cn.train.entity.Traininfo" alias="Traininfo" />
+		<typeAlias type="cn.train.entity.User" alias="User" />
+		<typeAlias type="cn.train.entity.Menu" alias="Menu" />
+		<typeAlias type="cn.train.entity.Role" alias="Role" />
+	</typeAliases>
+
 	<mappers>
-		<mapper resource="cn/train/dao/TrainMapper.xml"/>
-		<mapper resource="cn/train/dao/UserMapper.xml"/>
+		<mapper resource="cn/train/dao/TrainMapper.xml" />
+		<mapper resource="cn/train/dao/UserMapper.xml" />
+		<mapper resource="cn/train/dao/MenuMapper.xml" />
+		<mapper resource="cn/train/dao/RoleMapper.xml" />
 	</mappers>
 
 </configuration>

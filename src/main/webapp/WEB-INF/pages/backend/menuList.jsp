@@ -18,36 +18,60 @@
 				<h2>
 					<i class="icon-th"></i> 用户信息
 				</h2>
-			 <div class="box-icon"><span class="btn btn-small btn-primary addUser" >
+				 <div class="box-icon"><span class="btn btn-small btn-primary addMenu" >
 								<i class="icon-plus icon-white"></i> 添加 </span>
 				  </div>
-
-			</div>
+				</div>
 			<div class="box-content">
 				<table
 					class="table table-striped table-bordered bootstrap-datatable datatable">
 					<thead>
 						<tr>
-							<th><input type="button" value="删除" id="myDelUserBtn" ></th>
+							<th><input type="button" value="删除" id="myDelMenuBtn" ></th>
 							<th>编号</th>
-							<th>登录名</th>
-							<th>真实姓名</th>
-							<th>电话</th>
-							<th>地址</th>
-							<th>生日</th>
+							<th>父级编号</th>
+							<th>所有父级编号</th>
+							<th>名称</th>
+							<th>排序</th>
+							<th>链接</th>
+							<th>链接类型</th>
+							<th>目标</th>
+							<th>图标</th>
+							<th>是否在菜单中显示</th>
+							<th>权限标识</th>
+							<th>创建者</th>
+							<th>创建时间</th>
+							<th>更新者</th>
+							<th>更新时间</th>
+							<th>备注信息</th>
+							<th>删除标记</th>
+							<th>版本号</th>
 						</tr>
 					</thead>
 					<tbody>
 
-						<c:forEach items="${userList }" var="user">
+						<c:forEach items="${menuList }" var="menu">
 							<tr>
-								<td><input type="checkbox" class="checkbox" name="delUser" value="${user.id }"></td>
-								<td><a class="viewuser" id="${user.id }">${user.id }</a></td>
-								<td>${user.username}</td>
-								<td>${user.realname }</td>
-								<td>${user.telphone }</td>
-								<td>${user.address }</td>
-								<td>${user.birthday}</td>
+								<td><input type="checkbox" class="checkbox" name="delMenu" value="${menu.id }"></td>
+								<td><a class="viewuser" id="${menu.id }">${menu.id }</a></td>
+								<td>${menu.parentId}</td>
+								<td>${menu.parentIds }</td>
+								<td>${menu.name }</td>
+								<td>${menu.sort}</td>
+								<td>${menu.href}</td>
+								<td>${menu.hrefType}</td>
+								<td>${menu.target}</td>
+								<td>${menu.icon}</td>
+								<td>${menu.isShow }</td>
+								<td>${menu.permission}</td>
+								<td>${menu.createBy}</td>
+								<td>${menu.createDateStr }</td>
+								<td>${menu.updateBy }</td>
+								<td>${menu.updateDateStr}</td>
+								<td>${menu.remarks}</td>
+								<td>${menu.delFlag }</td>
+								<td>${menu.version}</td>
+								
 							</tr >
 						</c:forEach>
 					</tbody>
@@ -59,8 +83,8 @@
 	</div>
 </div>
 
-<!-- 查看用户信息 -->
-<div class="modal hide fade" id="myUserModal">
+ <!-- 查看用户信息 -->
+ <!-- <div class="modal hide fade" id="myMenuModal">
 	<div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal">×</button>
 		<h3>用户详细信息</h3>
@@ -103,41 +127,37 @@
 	<div class="modal-footer">
 		<a href="#" class="btn btn-primary" data-dismiss="modal">关闭</a> 
 	</div>
-</div>
+</div> -->
 
-<!-- 添加用户信息的表单 -->
-<div class="modal hide fade" id="addUserDiv" > 
+<!-- 添加菜单信息的表单 -->
+<div class="modal hide fade" id="addMenuDiv" > 
  <!-- <form action="backend/addTrain.html"  method="post" onsubmit="return addTrainFunction();" > -->
 	<div class="modal-header">
-		<button type="button" class="close  addusercancel" data-dismiss="modal">×</button>
-		<h3>添加用户</h3>
+		<button type="button" class="close  addmenucancel" data-dismiss="modal">×</button>
+		<h3>添加菜单</h3>
 	</div>
 	<div class="modal-body">
-			<ul id="add_formtip1"></ul>
+			<ul id="add_formtip2"></ul>
                <ul class="topul">
-                  <li><label>登录名：</label><input type="text" id="username" name="username" value="" />
+                  <li><label>名称：</label><input type="text" id="name" name="name" value="" />
                     				<span style="color:red;font-weight: bold;">*</span></li>
-                  <li><label>真实姓名：</label><input type="text" id="realname" name="realname" value=""></li>
-                  <li><label>电话：</label><input type="text" id="telphone" name="telphone" value="">
+                  <li><label>链接：</label><input type="text" id="href" name="href" value=""></li>
+                  <li><label>目标：</label><input type="text" id="target" name="target" value="">
                   					<span style="color:red;font-weight: bold;">*</span></li>
-                  <li><label>地址：</label><input type="text" id="address" name="address" value="">
+                  <li><label>排序：</label><input type="text" id="sort" name="sort" value="">
                   					<span style="color:red;font-weight: bold;">*</span></li>
-                  <li><label>生日：</label><input type="text" id="birthday" name="birthday" value="">
+                  <li><label>图标：</label><input type="text" id="icon" name="icon" value="">
                   					<span style="color:red;font-weight: bold;">*</span></li>
                   
                </ul>
 	</div>
 	<div class="modal-footer">
-		<a href="#" class="btn addusercancel" data-dismiss="modal">关闭</a>
-		<input type="button"  id="addUserBtn" class="btn btn-primary" value="保存" />
+		<a href="#" class="btn addmenucancel" data-dismiss="modal">关闭</a>
+		<input type="button"  id="addMenuBtn" class="btn btn-primary" value="保存" />
 	</div>
 	<!-- </form> -->
 </div>
 
 
-
-
 <%@include file="/WEB-INF/pages/common/foot.jsp"%>
-<script src="statics/localjs/user.js"></script>		
-
-	
+<script src="statics/localjs/menu.js"></script>		

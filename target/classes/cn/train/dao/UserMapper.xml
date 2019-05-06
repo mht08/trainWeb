@@ -2,21 +2,65 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="cn.train.dao.UserDao">
+    <!-- 通过<resultMap>映射实体类属性名和表的字段名对应关系 -->
+	<resultMap id="UserMapping" type="User">
+		<!-- id属性来映射主键字段 -->
+		<id column="id" property="id" javaType="Long" />
+		<!-- result属性映射非主键字段 -->
+		<result column="username" property="username" javaType="String" />
+		<result column="password" property="password" javaType="String" />
+		<result column="realname" property="realname" javaType="String" />
+		<result column="address" property="address" javaType="String" />
+		<result column="telphone" property="telphone" javaType="String" />
+		<result column="birthday" property="birthday" javaType="String" />
+		<result column="create_user" property="createUser" javaType="String" />
+		<result column="create_time" property="createTime" javaType="Date" />
+		<result column="update_user" property="updateUser" javaType="String" />
+		<result column="update_time" property="updateTime" javaType="Date" />
+		<result column="version" property="version" javaType="String" />
+		<result column="del_flg" property="delFlg" javaType="String" />
+	</resultMap>
 
-    <select id="getLoginUser" resultType="User" parameterType="User">
+    <select id="getLoginUser" resultMap="UserMapping" >
            select * from sys_user where username = #{username} and password = #{password}
     </select>
     
     <insert id="addUser" parameterType="User">
-           insert into sys_user(username,password) values (#{username},#{password})
+           insert into sys_user(
+           username,
+           password,
+           realname,
+           telphone,
+           birthday,
+           create_user,
+           create_time,
+           update_user,
+           update_time,
+           version,
+           del_flg) 
+           values (
+           #{username},
+           #{password},
+           #{realname},
+           #{telphone},
+           #{birthday},
+           #{createUser},
+           #{createTime},
+           #{updateUser},
+           #{updateTime},
+           #{version},
+           #{delFlg}
+           )
     </insert>
-
-    <select id="getUserList" resultType="User">
-           select * from sys_user
-    </select>
-    
-    <select id="getUserById" resultType="User" parameterType="int">
-           select * from sys_user where id = #{id}
-    </select>
+	<select id="getUserList" resultType="User">
+	    select * from sys_user
+	</select>
+	<select id="getUserById" resultMap="UserMapping" >
+	    select * from sys_user where id=#{id}
+	</select>
+   
+    <delete id="delUserById" parameterType="int">
+           delete from sys_user where id = #{id}
+    </delete>
     
 </mapper>

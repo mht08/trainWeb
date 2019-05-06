@@ -2,6 +2,8 @@ package cn.train.entity;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import cn.train.utils.DateUtil;
 
 /*
@@ -18,17 +20,14 @@ public class User {
 	private String realname;
 	private String address;
 	private String telphone;
-	private Date birthday;
+	//@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private String birthday;
 	private String createUser;
-	private String createTime;
+	private Date createTime;
 	private String updateUser;
-	private String updateTime;
+	private Date updateTime;
 	private String version;
 	private String delFalg;
-	
-	@SuppressWarnings("unused")
-	private String birthdayStr;
-	
 	public String getUsername() {
 		return username;
 	}
@@ -65,10 +64,10 @@ public class User {
 	public void setTelphone(String telphone) {
 		this.telphone = telphone;
 	}
-	public Date getBirthday() {
+	public String getBirthday() {
 		return birthday;
 	}
-	public void setBirthday(Date birthday) {
+	public void setBirthday(String birthday) {
 		this.birthday = birthday;
 	}
 	public String getCreateUser() {
@@ -77,10 +76,10 @@ public class User {
 	public void setCreateUser(String createUser) {
 		this.createUser = createUser;
 	}
-	public String getCreateTime() {
+	public Date getCreateTime() {
 		return createTime;
 	}
-	public void setCreateTime(String createTime) {
+	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
 	}
 	public String getUpdateUser() {
@@ -89,10 +88,10 @@ public class User {
 	public void setUpdateUser(String updateUser) {
 		this.updateUser = updateUser;
 	}
-	public String getUpdateTime() {
+	public Date getUpdateTime() {
 		return updateTime;
 	}
-	public void setUpdateTime(String updateTime) {
+	public void setUpdateTime(Date updateTime) {
 		this.updateTime = updateTime;
 	}
 	public String getVersion() {
@@ -108,9 +107,14 @@ public class User {
 		this.delFalg = delFalg;
 	}
 	
-	public String getBirthdayStr() {
-		return DateUtil.formatDate(getBirthday(), DateUtil.FMT);
-	}
+	//@SuppressWarnings("unused")
+	//private String birthdayStr;
+	
+	
+	
+//	public String getBirthdayStr() {
+//		return DateUtil.formatDate(getBirthday(), DateUtil.FMT_YYY_MM_DD);
+//	}
 }
 
 

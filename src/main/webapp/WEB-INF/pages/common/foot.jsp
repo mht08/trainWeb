@@ -80,6 +80,6 @@
 
 
 	<script src="statics/localjs/index.js"></script>		
-	<script src="statics/localjs/main.js"></script>		
+	
 </body>
 </html>
