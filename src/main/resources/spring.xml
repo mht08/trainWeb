@@ -56,7 +56,9 @@
 	<!-- sqlSessionFactory 对象 spring 和 MyBatis 完美整合 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"/>
+		<property name="typeAliasesPackage" value="cn.train.entity" />
 		<property name="configLocation" value="classpath:myBatisConfig.xml"/>
+		<property name="mapperLocations" value="classpath*:cn/train/dao/*Mapper.xml"/>
 	</bean>
 	
 	<!-- 事务管理 -->

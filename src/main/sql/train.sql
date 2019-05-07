@@ -130,28 +130,6 @@ CREATE TABLE `sys_menu` (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='菜单表';
 
 
-DROP TABLE IF EXISTS `sys_role`;
-CREATE TABLE `sys_role` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) NOT NULL COMMENT '角色名称',
-  `enname` varchar(255) DEFAULT NULL COMMENT '英文名称',
-  `role_type` varchar(255) DEFAULT NULL COMMENT '角色类型',
-  `data_scope` char(1) DEFAULT NULL COMMENT '数据范围',
-  `is_sys` varchar(64) DEFAULT NULL COMMENT '是否系统数据',
-  `useable` varchar(64) DEFAULT NULL COMMENT '是否可用',
-  `create_by` varchar(64) NOT NULL COMMENT '创建者',
-  `create_date` datetime NOT NULL COMMENT '创建时间',
-  `update_by` varchar(64) NOT NULL COMMENT '更新者',
-  `update_date` datetime NOT NULL COMMENT '更新时间',
-  `remarks` varchar(255) DEFAULT NULL COMMENT '备注信息',
-  `del_flag` char(1) NOT NULL DEFAULT '0' COMMENT '删除标记',
-  `version` varchar(50) DEFAULT NULL COMMENT '版本号',
-  PRIMARY KEY (`id`),
-  KEY `sys_role_del_flag` (`del_flag`) USING BTREE,
-  KEY `sys_role_enname` (`enname`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='角色表';
-
-
 DROP TABLE IF EXISTS `sys_role_menu`;
 CREATE TABLE `sys_role_menu` (
   `role_id` int(11) NOT NULL COMMENT '角色编号',
