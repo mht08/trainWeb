@@ -25,7 +25,7 @@
 			<span class="space"/><span class="comments">*2014-11-24.</span><br />
 			<span class="space"/><span class="comments">*/</span><br />
 			Boy name = <span class="keyword">Mr</span> MA<br />
-			Girl name = <span class="keyword">Mrs</span> ZHOU<br />
+			Girl name = <span class="keyword">Mrs</span> GAO<br />
 			<span class="comments">// Fall in love river. </span><br />
 			The boy love the girl;<br />
 			<span class="comments">// They love each other.</span><br />
