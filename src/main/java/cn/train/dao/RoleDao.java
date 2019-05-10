@@ -3,6 +3,7 @@ package cn.train.dao;
 import java.util.List;
 
 import cn.train.entity.Role;
+import cn.train.entity.Traininfo;
 
 public interface RoleDao {
 		//查询所有角色信息
@@ -13,4 +14,6 @@ public interface RoleDao {
 		public int addRole(Role role);
 		//删除角色信息
 		public int delRoleById(int id) ;
+		//修改角色信息
+		public Integer  updateById(Role role);
 }

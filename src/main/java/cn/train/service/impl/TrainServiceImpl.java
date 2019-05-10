@@ -46,6 +46,12 @@ public class TrainServiceImpl implements TrainService {
 	public int addTraininfo(Traininfo trainInfo) throws Exception{
 		return trainDao.addTraininfo(trainInfo);
 	}
+
+	@Override
+	public Integer updateById(Traininfo trainInfo) throws Exception {
+		// TODO Auto-generated method stub
+		return trainDao.updateById(trainInfo);
+	}
 	
 
 }

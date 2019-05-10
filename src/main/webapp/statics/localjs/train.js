@@ -184,4 +184,77 @@ $('.addtraincancel').click(function(e) {
 });
 
 
+function updateTrainFun(id) {
+	$.ajax({
+		type : "POST",
+		url : "train/backend/getTrain.html",
+		data : {
+			id : id
+		},
+		dataType : "html",
+		timeout : 1000,
+		error : function() {
+			alert("error");
+		},
+		success : function(result) {
+			if ("failed" == result) {
+				alert("操作超时！");
+			} else if ("nodata" == result) {
+				alert("没有数据！");
+			} else {
+				m = eval('(' + result + ')');
+				$("#updateId").val(m.id);
+				$("#updatetrainNo").val(m.train_no);
+				$("#updatestartStation").val(m.start_station);
+				$("#updatearrivalStation").val(m.arrival_station);
+				$("#updatestartTime").val(m.start_time);
+				$("#updatetype").val(m.type);
+				$("#updatemile").val(m.mile);
+				
+				$('#updateTrainDiv').modal('show');
+			}
+		}
+	});
+}
+
+
+
+$('#updateTrainBtn').click(function(e) {
+	// addUserFunction
+	$.ajax({
+		type : "POST",
+		url : "train/backend/updateTrain.html",
+		data : {
+			id : $.trim($("#updateId").val()),
+			train_no : $.trim($("#updatetrainNo").val()),
+			start_station : $.trim($("#updatestartStation").val()),
+			arrival_station : $.trim($("#updatearrivalStation").val()),
+			start_time : $.trim($("#updatestartTime").val()),
+			type : $.trim($("#updatetype").val()),
+			mile : $.trim($("#updatemile").val())
+		// 最后一个不需要逗号
+
+		},
+		dataType : "html",
+		timeout : 1000,
+		error : function() {
+		},
+		success : function(result) {
+			$('#updateTrainDiv').modal('hide');
+			window.location.href = "train/backend/trainList.html";
+		},
+	});
+});
+	
+$('.updatetraincancel').click(function(e) {
+	$("#updateId").val('');          
+	$("#updatetrainNo").val('');    
+	$("#updatestartStation").val('');    
+	$("#updatearrivalStation").val('');    
+	$("#updatestartTime").val('');       
+	$("#updatetype").val('');    
+	$("#updatemile").val('');     
+});
+
+
 

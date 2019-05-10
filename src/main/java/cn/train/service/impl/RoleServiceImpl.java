@@ -45,6 +45,12 @@ public class RoleServiceImpl  implements RoleService{
 		}
 		return num;
 	}
+
+	@Override
+	public Integer updateById(Role role) {
+		// TODO Auto-generated method stub
+		return roleDao.updateById(role);
+	}
 	
 	
 

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.train.dao.MenuDao">
-    
-    <!-- 通过<resultMap>映射实体类属性名和表的字段名对应关系 -->
+
+	<!-- 通过<resultMap>映射实体类属性名和表的字段名对应关系 -->
 	<resultMap id="MenuMapping" type="Menu">
 		<!-- id属性来映射主键字段 -->
 		<id column="id" property="id" javaType="Long" />
@@ -25,11 +25,11 @@
 		<result column="del_flag" property="delFlag" javaType="String" />
 		<result column="version" property="version" javaType="String" />
 	</resultMap>
-    
+
 
 	<insert id="addMenu" parameterType="Menu">
 		INSERT INTO sys_menu(
-		
+
 		name,
 		parent_id,
 		parent_ids,
@@ -52,17 +52,20 @@
 		#{ name },
 		#{ parentId },
 		#{ parentIds },
-		#{ sort },
+		#{
+		sort },
 		#{ href },
 		#{ hrefType },
 		#{ target },
 		#{ icon },
 		#{ isShow },
-		#{ permission },
+		#{
+		permission },
 		#{ createBy },
 		#{ createDate },
 		#{ updateBy },
-		#{ updateDate },
+		#{ updateDate
+		},
 		#{ remarks },
 		#{ delFlag },
 		#{ version }
@@ -78,6 +81,44 @@
 	</select>
 
 	<delete id="deleteMenuById" parameterType="int">
-		DELETE from sys_menu where id = #{id}
+		DELETE from sys_menu
+		where id = #{id}
 	</delete>
+	<select id="getMenuByIds" resultMap="MenuMapping">
+		select * from sys_menu where id in
+		<foreach collection="ids" item="id" index="index" open="("
+			close=")" separator=",">
+			#{id}
+		</foreach>
+
+	</select>
+	<delete id="deleteMenuByParentIds">
+		delete from sys_menu where parent_ids like
+		concat("%",concat(#{parentIds},"%")) or id=#{id}
+	</delete>
+
+	<update id="updateById" parameterType="Menu">
+		UPDATE sys_menu
+		<set>
+			<if test="null != name and '' != name">
+				name = #{name},
+			</if>
+			<if test="null != sort and '' != sort">
+				sort = #{sort},
+			</if>
+			<if test="null != href and '' != href">
+				href=#{href},
+			</if>
+			<if test="null != hrefType and '' != hrefType">
+				href_type=#{hrefType},
+			</if>
+			<if test="null != target and '' != target">
+				target=#{target},
+			</if>
+			<if test="null != permission and '' != permission">
+				permission=#{permission},
+			</if>
+		</set>
+		WHERE id =#{id}
+	</update>
 </mapper>

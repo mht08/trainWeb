@@ -18,7 +18,7 @@
 		<result column="update_user" property="updateUser" javaType="String" />
 		<result column="update_time" property="updateTime" javaType="Date" />
 		<result column="version" property="version" javaType="String" />
-		<result column="del_flg" property="delFlg" javaType="String" />
+		<result column="del_flag" property="delFlag" javaType="String" />
 	</resultMap>
 
 	<select id="selectRoleALL" resultMap="RoleMapping">
@@ -61,4 +61,29 @@
 	<delete id="delRoleById" parameterType="int">
 		delete from sys_role where id = #{id}
 	</delete>
+	<update id="updateById" parameterType="Role">
+		UPDATE sys_role 
+		<set>
+		<if test="null != roleType and '' != roleType">
+		role_type = #{roleType},
+		</if>
+		<if test="null != enname and '' != enname">
+		enname = #{enname},
+		</if>
+		<if test="null != name and '' != name">
+		name=#{name},
+		</if>
+		<if test="null != isSys and '' != isSys">
+		is_sys=#{isSys},
+		</if>
+		<if test="null != useable and '' != useable">
+		useable=#{useable},
+		</if>
+		<if test="null != remarks and '' != remarks">
+		remarks=#{remarks},
+		</if>
+		</set>
+		 WHERE  id =#{id}
+		
+	</update>
 </mapper>

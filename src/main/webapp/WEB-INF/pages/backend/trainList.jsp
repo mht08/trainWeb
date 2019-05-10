@@ -31,6 +31,7 @@
 							<th>发时 —— 到时</th>
 							<th>车型</th>
 							<th>运行时间（小时）</th>
+							<th>操作</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -43,6 +44,8 @@
 								<td>${train.start_time }——${train.arrival_time }</td>
 								<td>${train.type }</td>
 								<td>${train.runtime }</td>
+								<td><input type="button" value="x"  onclick="updateTrainFun(${train.id})"></td>
+								
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -131,6 +134,42 @@
 	<div class="modal-footer">
 		<a href="#" class="btn addtraincancel" data-dismiss="modal">关闭</a>
 		<input type="button"  id="addTrainBtn" class="btn btn-primary" value="保存" />
+	</div>
+	<!-- </form> -->
+</div>
+
+
+
+<!-- 修改用户 -->
+<div class="modal hide fade" id="updateTrainDiv" > 
+ <!-- <form action="backend/addTrain.html"  method="post" onsubmit="return addTrainFunction();" > -->
+ 	
+ 	
+	<div class="modal-header">
+		<button type="button" class="close  updatetraincancel" data-dismiss="modal">×</button>
+		<h3>修改用户</h3>
+	</div>
+	<div class="modal-body">
+		<input id="updateId" type="hidden"/>
+		<ul id="update_formtip"></ul>
+        <ul class="topul">
+           <li><label>车次：</label><input type="text" id="updatetrainNo" value="" />
+             				<span style="color:red;font-weight: bold;">*</span></li>
+           <li><label>发车地：</label><input type="text" id="updatestartStation" value=""></li>
+           <li><label>到达地：</label><input type="text" id="updatearrivalStation"  value="">
+           					<span style="color:red;font-weight: bold;">*</span></li>
+           <li><label>发车时间：</label><input type="text" id="updatestartTime" value="">
+           					<span style="color:red;font-weight: bold;">*</span></li>
+           <li><label>车型：</label><input type="text" id="updatetype" value="">
+           					<span style="color:red;font-weight: bold;">*</span></li>
+           <li><label>英里：</label><input type="text" id="updatemile"value="">
+           					<span style="color:red;font-weight: bold;">*</span></li>
+           
+        </ul>
+	</div>
+	<div class="modal-footer">
+		<a href="#" class="btn updatetraincancel" data-dismiss="modal">关闭</a>
+		<input type="button"  id="updateTrainBtn" class="btn btn-primary" value="修改" />
 	</div>
 	<!-- </form> -->
 </div>

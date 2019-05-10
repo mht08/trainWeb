@@ -1,5 +1,6 @@
 package cn.train.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -12,7 +13,9 @@ import cn.train.utils.DateUtil;
  * @ class description：用户信息实体
  *
  */
-public class User {
+public class User implements Serializable{
+
+	private static final long serialVersionUID = -7272678063004737126L;
 	
 	private String username;
 	private String password;

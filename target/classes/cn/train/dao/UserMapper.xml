@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="cn.train.dao.UserDao">
-    <!-- 通过<resultMap>映射实体类属性名和表的字段名对应关系 -->
+	<!-- 通过<resultMap>映射实体类属性名和表的字段名对应关系 -->
 	<resultMap id="UserMapping" type="User">
 		<!-- id属性来映射主键字段 -->
 		<id column="id" property="id" javaType="Long" />
@@ -18,49 +18,77 @@
 		<result column="update_user" property="updateUser" javaType="String" />
 		<result column="update_time" property="updateTime" javaType="Date" />
 		<result column="version" property="version" javaType="String" />
-		<result column="del_flg" property="delFlg" javaType="String" />
+		<result column="del_falg" property="delFalg" javaType="String" />
 	</resultMap>
 
-    <select id="getLoginUser" resultMap="UserMapping" >
-           select * from sys_user where username = #{username} and password = #{password}
-    </select>
-    
-    <insert id="addUser" parameterType="User">
-           insert into sys_user(
-           username,
-           password,
-           realname,
-           telphone,
-           birthday,
-           create_user,
-           create_time,
-           update_user,
-           update_time,
-           version,
-           del_flg) 
-           values (
-           #{username},
-           #{password},
-           #{realname},
-           #{telphone},
-           #{birthday},
-           #{createUser},
-           #{createTime},
-           #{updateUser},
-           #{updateTime},
-           #{version},
-           #{delFlg}
-           )
-    </insert>
+	<select id="getLoginUser" resultMap="UserMapping">
+		select * from sys_user where username = #{username} and password =
+		#{password}
+	</select>
+
+	<insert id="addUser" parameterType="User">
+		insert into sys_user(
+		address,
+		username,
+		password,
+		realname,
+		telphone,
+		birthday,
+		create_user,
+		create_time,
+		update_user,
+		update_time,
+		version,
+		del_falg)
+		values (
+		#{address},
+		#{username},
+		#{password},
+		#{realname},
+		#{telphone},
+		#{birthday},
+		#{createUser},
+		#{createTime},
+		#{updateUser},
+		#{updateTime},
+		#{version},
+		#{delFalg}
+		)
+	</insert>
 	<select id="getUserList" resultType="User">
-	    select * from sys_user
+		select * from sys_user
 	</select>
-	<select id="getUserById" resultMap="UserMapping" >
-	    select * from sys_user where id=#{id}
+	<select id="getUserById" resultMap="UserMapping">
+		select * from sys_user where id=#{id}
 	</select>
-   
-    <delete id="delUserById" parameterType="int">
-           delete from sys_user where id = #{id}
-    </delete>
-    
+
+	<delete id="delUserById" parameterType="int">
+		delete from sys_user where id = #{id}
+	</delete>
+	<update id="updateById" parameterType="User">
+		UPDATE sys_user 
+		<set>
+		<if test="null !=username and '' !=username">
+		username = #{username},
+		</if>
+		<if test="null != password and '' != password">
+		password = #{password},
+		</if>
+		<if test="null != realname and '' != realname">
+		realname=#{realname},
+		</if>
+		<if test="null != address and '' != address">
+		address=#{address},
+		</if>
+		<if test="null != telphone and '' != telphone">
+		telphone=#{telphone},
+		</if>
+		<if test="null != birthday and '' != birthday">
+		birthday=#{birthday},
+		</if>
+		</set>
+		 WHERE  id =#{id}
+		
+	</update>
+
 </mapper>

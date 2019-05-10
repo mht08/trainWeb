@@ -41,10 +41,10 @@
 							<th>备注信息</th>
 							<th>删除标记</th>
 							<th>版本号</th>
+							<th>修改</th>
 						</tr>
 					</thead>
 					<tbody>
-
 						<c:forEach items="${roleList}" var="role">
 							<tr>
 								<td><input type="checkbox" class="checkbox" name="delRole" value="${role.id }"></td>
@@ -62,6 +62,7 @@
 								<td>${role.remarks }</td>
 								<td>${role.delFlag }</td>
 								<td>${role.version }</td>
+								<td><input type="button" value="x"  onclick="updateRoleFun(${role.id})"></td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -138,6 +139,41 @@
 		<a href="#" class="btn btn-primary" data-dismiss="modal">关闭</a>
 	</div>
 </div> 
+
+
+<!-- 修改用户 -->
+<div class="modal hide fade" id="updateRoleDiv" > 
+ <!-- <form action="backend/addTrain.html"  method="post" onsubmit="return addTrainFunction();" > -->
+ 	
+ 	
+	<div class="modal-header">
+		<button type="button" class="close  updaterolecancel" data-dismiss="modal">×</button>
+		<h3>修改用户</h3>
+	</div>
+	<div class="modal-body">
+		<input id="updateId" type="hidden"/>
+		<ul id="update_formtip"></ul>
+        <ul class="topul">
+           <li><label>是否可用：</label><input type="text" id="useable" value="" />
+             				<span style="color:red;font-weight: bold;">*</span></li>
+           <li><label>英文名称：</label><input type="text" id="updateenname" value=""></li>
+           <li><label>角色名称：</label><input type="text" id="updatename"  value="">
+           					<span style="color:red;font-weight: bold;">*</span></li>
+           <li><label>是否系统数据：</label><input type="text" id="updateisSys" value="">
+           					<span style="color:red;font-weight: bold;">*</span></li>
+           <li><label>角色类型：</label><input type="text" id="updateroleType" value="">
+           					<span style="color:red;font-weight: bold;">*</span></li>
+           <li><label>备注信息：</label><input type="text" id="updateremarks"value="">
+           					<span style="color:red;font-weight: bold;">*</span></li>
+           
+        </ul>
+	</div>
+	<div class="modal-footer">
+		<a href="#" class="btn updaterolecancel" data-dismiss="modal">关闭</a>
+		<input type="button"  id="updateRoleBtn" class="btn btn-primary" value="修改" />
+	</div>
+	<!-- </form> -->
+</div>
 <%@include file="/WEB-INF/pages/common/foot.jsp"%>
-<script src="statics/localjs/role.js"></script>
+<script src="statics/localjs/role.js?1"></script>
 	

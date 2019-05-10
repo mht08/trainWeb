@@ -16,7 +16,7 @@
 		<div class="box span12">
 			<div class="box-header well" data-original-title>
 				<h2>
-					<i class="icon-th"></i> 用户信息
+					<i class="icon-th"></i> 菜单信息
 				</h2>
 				 <div class="box-icon"><span class="btn btn-small btn-primary addMenu" >
 								<i class="icon-plus icon-white"></i> 添加 </span>
@@ -46,6 +46,8 @@
 							<th>备注信息</th>
 							<th>删除标记</th>
 							<th>版本号</th>
+							<th>操作</th>
+							<th>修改</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -53,9 +55,9 @@
 						<c:forEach items="${menuList }" var="menu">
 							<tr>
 								<td><input type="checkbox" class="checkbox" name="delMenu" value="${menu.id }"></td>
-								<td><a class="viewuser" id="${menu.id }">${menu.id }</a></td>
-								<td>${menu.parentId}</td>
-								<td>${menu.parentIds }</td>
+								<td><a class="viewmenu" id="${menu.id }">${menu.id }</a></td>
+								<td>${menu.parentIdStr}</td>
+								<td>${menu.parentIdsStr }</td>
 								<td>${menu.name }</td>
 								<td>${menu.sort}</td>
 								<td>${menu.href}</td>
@@ -71,7 +73,8 @@
 								<td>${menu.remarks}</td>
 								<td>${menu.delFlag }</td>
 								<td>${menu.version}</td>
-								
+								<td><input type="button" value="下一级菜单"  onclick="addNextMenu('${menu.id}','${menu.parentIds}')"></td>
+								<td><input type="button" value="x"  onclick="updateMenuFun(${menu.id})"></td>
 							</tr >
 						</c:forEach>
 					</tbody>
@@ -83,8 +86,8 @@
 	</div>
 </div>
 
- <!-- 查看用户信息 -->
- <!-- <div class="modal hide fade" id="myMenuModal">
+ <!-- 查看菜单详情信息 -->
+ <div class="modal hide fade" id="myMenuModal">
 	<div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal">×</button>
 		<h3>用户详细信息</h3>
@@ -93,32 +96,17 @@
 		   <table class="table table-bordered bootstrap-datatable ">
 			<tbody>
 				<tr>
-					<td>编号</td>
-					<td id="userId"></td>
+					<td>名称</td>
+					<td id="strname"></td>
 				</tr>
 				<tr>
-					<td>用户名</td>
-					<td  id="userUsername"></td>
+					<td>链接</td>
+					<td  id="strhref"></td>
 				</tr>
+				
 				<tr>
-					<td>密码</td>
-					<td  id="userPassword"></td>
-				</tr>
-				<tr>
-					<td>真实姓名</td>
-					<td  id="userRealname"></td>
-				</tr>
-				<tr>
-					<td>生日</td>
-					<td  id="userBirth"></td>
-				</tr>
-				<tr>
-					<td>电话</td>
-					<td  id="userTelphone"></td>
-				</tr>
-				<tr>
-					<td>地址</td>
-					<td  id="userAddress"></td>
+					<td>图标</td>
+					<td  id="strtarget"></td>
 				</tr>
 				
 			</tbody>
@@ -127,11 +115,14 @@
 	<div class="modal-footer">
 		<a href="#" class="btn btn-primary" data-dismiss="modal">关闭</a> 
 	</div>
-</div> -->
+</div>
 
 <!-- 添加菜单信息的表单 -->
 <div class="modal hide fade" id="addMenuDiv" > 
  <!-- <form action="backend/addTrain.html"  method="post" onsubmit="return addTrainFunction();" > -->
+ 	<input  id="addParentId" type="hidden">
+ 	<input id="addParentIds" type="hidden">
+ 	
 	<div class="modal-header">
 		<button type="button" class="close  addmenucancel" data-dismiss="modal">×</button>
 		<h3>添加菜单</h3>
@@ -158,6 +149,43 @@
 	<!-- </form> -->
 </div>
 
+<!-- 修改菜单 -->
+<div class="modal hide fade" id="updateMenuDiv" > 
+ <!-- <form action="backend/addTrain.html"  method="post" onsubmit="return addTrainFunction();" > -->
+ 	
+ 	
+	<div class="modal-header">
+		<button type="button" class="close  updatemenucancel" data-dismiss="modal">×</button>
+		<h3>修改用户</h3>
+	</div>
+	<div class="modal-body">
+		<input id="updateId" type="hidden"/>
+		<ul id="update_formtip"></ul>
+        <ul class="topul">
+           <li><label>名称：</label><input type="text" id="updatename" value="" />
+             				<span style="color:red;font-weight: bold;">*</span></li>
+           <li><label>排序：</label><input type="text" id="updateshort" value=""></li>
+           <li><label>链接：</label><input type="text" id="updatehref"  value="">
+           					<span style="color:red;font-weight: bold;">*</span></li>
+           <li><label>链接类型：</label><input type="text" id="updatehrefType" value="">
+           					<span style="color:red;font-weight: bold;">*</span></li>
+           <li><label>目标：</label><input type="text" id="updatetarget" value="">
+           					<span style="color:red;font-weight: bold;">*</span></li>
+           <li><label>权限标识：</label><input type="text" id="updatepermission"value="">
+           					<span style="color:red;font-weight: bold;">*</span></li>
+           
+        </ul>
+	</div>
+	<div class="modal-footer">
+		<a href="#" class="btn updatemenucancel" data-dismiss="modal">关闭</a>
+		<input type="button"  id="updateMenuBtn" class="btn btn-primary" value="修改" />
+	</div>
+	<!-- </form> -->
+</div>
+
+
+
+
 
 <%@include file="/WEB-INF/pages/common/foot.jsp"%>
-<script src="statics/localjs/menu.js"></script>		
+<script src="statics/localjs/menu.js?2"></script>		

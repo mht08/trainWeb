@@ -4,6 +4,7 @@ package cn.train.dao;
 import java.util.List;
 
 import cn.train.entity.Traininfo;
+import cn.train.entity.User;
 
 /*
  * @ Copyright (c) Create by JASON  Date:2018-04-17  All rights reserved.
@@ -19,7 +20,13 @@ public interface TrainDao {
 
 	public int deleteTraininfoById(int id);
 	
-	public int addTraininfo(Traininfo trainInfo); 
+	public int addTraininfo(Traininfo Traininfo); 
+	
+	//修改火车信息
+		public Integer  updateById(Traininfo Traininfo);
+
+	
+	
 }
 
 

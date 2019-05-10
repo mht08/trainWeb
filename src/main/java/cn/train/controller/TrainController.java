@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.train.entity.Traininfo;
+import cn.train.entity.User;
 import cn.train.service.TrainService;
 import net.sf.json.JSONObject;
 
@@ -117,6 +118,20 @@ public class TrainController {
 			return "failed";
 		}
 	}
+	
+	//修改火车列表信息的请求处理
+			@RequestMapping(value="backend/updateTrain.html",method=RequestMethod.POST)
+			@ResponseBody
+			public String updateUserPage(HttpSession session,Traininfo trainInfo){
+				
+				try {
+					trainService.updateById(trainInfo);
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				return "";
+			}
 
 }
 

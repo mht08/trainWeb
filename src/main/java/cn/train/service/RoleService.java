@@ -3,6 +3,7 @@ package cn.train.service;
 import java.util.List;
 
 import cn.train.entity.Role;
+import cn.train.entity.User;
 
 public interface RoleService {
 	//查询所有角色信息
@@ -15,4 +16,6 @@ public interface RoleService {
 	public int delRoleById(int id) ;
 	//删除被选信息
 	public int delRoleByIds(String[] ids);
+	
+	public Integer updateById(Role role);
 }

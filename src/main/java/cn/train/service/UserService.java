@@ -27,6 +27,8 @@ public interface UserService {
 	
 	//根据id 查询用户
 	public User getUserById(int id) throws Exception;
+	
+	public Integer updateById(User user) throws Exception;
 }
 
 

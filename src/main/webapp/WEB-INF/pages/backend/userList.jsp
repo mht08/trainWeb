@@ -35,6 +35,7 @@
 							<th>电话</th>
 							<th>地址</th>
 							<th>生日</th>
+							<th>操作</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -48,6 +49,7 @@
 								<td>${user.telphone }</td>
 								<td>${user.address }</td>
 								<td>${user.birthday}</td>
+								<td><input type="button" value="x"  onclick="updateUserFun(${user.id})"></td>
 							</tr >
 						</c:forEach>
 					</tbody>
@@ -136,8 +138,44 @@
 
 
 
+<!-- 修改用户 -->
+<div class="modal hide fade" id="updateUserDiv" > 
+ <!-- <form action="backend/addTrain.html"  method="post" onsubmit="return addTrainFunction();" > -->
+ 	
+ 	
+	<div class="modal-header">
+		<button type="button" class="close  updateusercancel" data-dismiss="modal">×</button>
+		<h3>修改用户</h3>
+	</div>
+	<div class="modal-body">
+		<input id="updateId" type="hidden"/>
+		<ul id="update_formtip"></ul>
+        <ul class="topul">
+           <li><label>名称：</label><input type="text" id="updateUsername" value="" />
+             				<span style="color:red;font-weight: bold;">*</span></li>
+           <li><label>密码：</label><input type="text" id="updatePassword" value=""></li>
+           <li><label>真实名字：</label><input type="text" id="updateRealname"  value="">
+           					<span style="color:red;font-weight: bold;">*</span></li>
+           <li><label>地址：</label><input type="text" id="updateAddress" value="">
+           					<span style="color:red;font-weight: bold;">*</span></li>
+           <li><label>电话：</label><input type="text" id="updateTelphone" value="">
+           					<span style="color:red;font-weight: bold;">*</span></li>
+           <li><label>生日：</label><input type="text" id="updateBirth"value="">
+           					<span style="color:red;font-weight: bold;">*</span></li>
+           
+        </ul>
+	</div>
+	<div class="modal-footer">
+		<a href="#" class="btn updateusercancel" data-dismiss="modal">关闭</a>
+		<input type="button"  id="updateUserBtn" class="btn btn-primary" value="修改" />
+	</div>
+	<!-- </form> -->
+</div>
+
+
+
 
 <%@include file="/WEB-INF/pages/common/foot.jsp"%>
-<script src="statics/localjs/user.js"></script>		
+<script src="statics/localjs/user.js?3"></script>		
 
 	

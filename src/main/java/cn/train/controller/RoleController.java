@@ -111,5 +111,17 @@ public class RoleController {
 			}
 		}
 		
-		
+		//修改角色列表信息的请求处理
+		@RequestMapping(value="backend/updateRole.html",method=RequestMethod.POST)
+		@ResponseBody
+		public String updateUserPage(HttpSession session,Role role){
+			
+			try {
+				roleService.updateById(role);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return "";
+		}
 }

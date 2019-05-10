@@ -36,6 +36,32 @@
 	<select id="getTraininfoDetail" parameterType="int" resultType="Traininfo">
 		select * from train_info where id = #{id}
 	</select>
+	
+	<update id="updateById" parameterType="Traininfo">
+		UPDATE train_info 
+		<set>
+		<if test="null != train_no and '' != train_no">
+		train_no = #{train_no},
+		</if>
+		<if test="null != start_station and '' != start_station">
+		start_station = #{start_station},
+		</if>
+		<if test="null != arrival_station and '' != arrival_station">
+		arrival_station=#{arrival_station},
+		</if>
+		<if test="null != start_time and '' != start_time">
+		start_time=#{start_time},
+		</if>
+		<if test="null != type and '' != type">
+		type=#{type},
+		</if>
+		<if test="null != mile and '' != mile">
+		mile=#{mile},
+		</if>
+		</set>
+		 WHERE  id =#{id}
+		
+	</update>
 
 
 

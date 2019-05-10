@@ -7,7 +7,6 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import cn.train.dao.UserDao;
-
 import cn.train.entity.User;
 import cn.train.service.UserService;
 
@@ -54,6 +53,12 @@ public class UserServiceImpl implements UserService {
 		//service没有保存好了
 		// TODO Auto-generated method stub
 		return userDao.getUserById(id);
+	}
+
+	@Override
+	public Integer updateById(User user) throws Exception {
+		// TODO Auto-generated method stub
+		return userDao.updateById(user);
 	}
 	
 	

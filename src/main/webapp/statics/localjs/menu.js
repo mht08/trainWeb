@@ -1,4 +1,35 @@
 
+$('.viewmenu').click(function(e) {
+	var m_id =$(this).attr('id');
+	$.ajax({
+		url:'menu/backend/getMenu.html',
+		type:'post',
+		data:{id:m_id},
+		dataType:'html',
+		timeout:1000,
+		error:function(){
+			alert("alert");
+		},
+		success:function(result){
+			if("failed" == result){
+				alert("没有数据");
+				}
+			else if("nodata" == result){
+				alert("操作超时");
+			}else{
+				m = eval('(' + result + ')');
+				console.log(m);
+				$("#strname").html(m.name);
+				$("#strhref").html(m.href);
+				$("#strtarget").html(m.target);
+				
+			}
+		}
+	});
+	e.preventDefault();
+	$('#myMenuModal').modal('show');
+});
+
 
 $("#myDelMenuBtn").click(function(){
 	 var trs = $("table").find("tr"); //获取表格每一行
@@ -63,10 +94,18 @@ $("#myDelMenuBtn").click(function(){
 //    return str;
 //
 //}
+function addNextMenu(parentId,parentIds) {
+	$('#addParentId').val(parentId);
+	$('#addParentIds').val(parentIds+parentId+",");
+	$('#add_formtip2').html("");
+	$('#addMenuDiv').modal('show');
+}
 
 
 
 $('.addMenu').click(function(e){
+	$('#addParentId').val("");
+	$('#addParentIds').val("");
 	$("#add_formtip2").html('');
 	e.preventDefault();
 	$('#addMenuDiv').modal('show');
@@ -82,6 +121,8 @@ $('#addMenuBtn').click(function(e){
 				target : $.trim($("#target").val()),
 				sort : $.trim($("#sort").val()),
 				icon : $.trim($("#icon").val()),
+				parentId:$.trim($('#addParentId').val()),
+				parentIds:$.trim($('#addParentIds').val())
 				
 			},
 			dataType : "html",
@@ -89,8 +130,13 @@ $('#addMenuBtn').click(function(e){
 			error : function() {
 			},
 			success : function(result) {
-				$('#addMenuDiv').modal('hide');
-				window.location.href = "menu/backend/menuList.html";
+				if(result == "0000"){
+					$('#addMenuDiv').modal('hide');
+					window.location.href = "menu/backend/menuList.html";
+				}else{
+					alert("保存失败");	
+					window.location.href = "menu/backend/menuList.html";
+				}
 			},
 		});
 	}
@@ -138,3 +184,79 @@ $('.addmenucancel').click(function(e) {
 	$('#icon').val('');
 	
 });
+
+
+
+
+function updateMenuFun(id) {
+	$.ajax({
+		type : "POST",
+		url : "menu/backend/getMenu.html",
+		data : {
+			id : id
+		},
+		dataType : "html",
+		timeout : 1000,
+		error : function() {
+			alert("error");
+		},
+		success : function(result) {
+			if ("failed" == result) {
+				alert("操作超时！");
+			} else if ("nodata" == result) {
+				alert("没有数据！");
+			} else {
+				m = eval('(' + result + ')');
+				$("#updateId").val(m.id);
+				$("#updatename").val(m.name);
+				$("#updateshort").val(m.short);
+				$("#updatehref").val(m.href);
+				$("#updatehrefType").val(m.hrefType);
+				$("#updatetarget").val(m.target);
+				$("#updatepermission").val(m.permission);
+				
+				$('#updateMenuDiv').modal('show');
+			}
+		}
+	});
+}
+
+
+
+$('#updateMenuBtn').click(function(e) {
+	// addUserFunction
+	$.ajax({
+		type : "POST",
+		url : "menu/backend/updateMenu.html",
+		data : {
+			id : $.trim($("#updateId").val()),
+			name : $.trim($("#updatename").val()),
+			sort : $.trim($("#updateshort").val()),
+			href : $.trim($("#updatehref").val()),
+			href_type : $.trim($("#updatehrefType").val()),
+			target : $.trim($("#updatetarget").val()),
+			permission : $.trim($("#updatepermission").val())
+		// 最后一个不需要逗号
+
+		},
+		dataType : "html",
+		timeout : 1000,
+		error : function() {
+		},
+		success : function(result) {
+			$('#updateMenuDiv').modal('hide');
+			window.location.href = "menu/backend/menuList.html";
+		},
+	});
+});
+	
+$('.updatemenucancel').click(function(e) {
+	$("#updatename").val('');          
+	$("#updateshort").val('');    
+	$("#updatehref").val('');    
+	$("#updatehrefType").val('');    
+	$("#updatetarget").val('');       
+	$("#updatepermission").val('');    
+	$("#updateId").val('');     
+});
+

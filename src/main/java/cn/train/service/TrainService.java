@@ -3,6 +3,7 @@ package cn.train.service;
 import java.util.List;
 
 import cn.train.entity.Traininfo;
+import cn.train.entity.User;
 
 
 /*
@@ -21,6 +22,8 @@ public interface TrainService {
 	public int deleteTraininfoByids(String[] selectIds) throws Exception;
     
     public int addTraininfo(Traininfo trainInfo) throws Exception;
+    //修改火车信息
+	public Integer updateById(Traininfo trainInfo) throws Exception;
     
 	
 }

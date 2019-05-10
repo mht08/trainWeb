@@ -2,6 +2,8 @@ package cn.train.entity;
 
 import java.util.Date;
 
+import org.apache.commons.lang.StringUtils;
+
 import cn.train.utils.DateUtil;
 
 public class Menu {
@@ -26,10 +28,23 @@ public class Menu {
 	private String version; // '版本号',
 	@SuppressWarnings("unused")
 	private String createDateStr;
-	
 	@SuppressWarnings("unused")
 	private String updateDateStr;
+	private String parentIdStr;
+	private String parentIdsStr;
 	
+	public String getParentIdStr() {
+		return parentIdStr;
+	}
+	public void setParentIdStr(String parentIdStr) {
+		this.parentIdStr = parentIdStr;
+	}
+	public String getParentIdsStr() {
+		return parentIdsStr;
+	}
+	public void setParentIdsStr(String parentIdsStr) {
+		this.parentIdsStr = parentIdsStr;
+	}
 	public Long getId() {
 		return id;
 	}
@@ -37,13 +52,13 @@ public class Menu {
 		this.id = id;
 	}
 	public String getParentId() {
-		return parentId;
+		return StringUtils.isBlank(parentId) ? "0":parentId.trim();
 	}
 	public void setParentId(String parentId) {
 		this.parentId = parentId;
 	}
 	public String getParentIds() {
-		return parentIds;
+		return StringUtils.isBlank(parentIds) ? "0," : parentIds.trim();
 	}
 	public void setParentIds(String parentIds) {
 		this.parentIds = parentIds;
@@ -145,4 +160,6 @@ public class Menu {
 	public String getUpdateDateStr() {
 		return DateUtil.formatDate(getUpdateDate(), DateUtil.FMT);
 	}
+	
+	
 }

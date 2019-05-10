@@ -126,6 +126,21 @@ public class UserController {
 		}
 		return cjson;
 	}
+	
+	
+	//修改菜单信息的请求处理
+		@RequestMapping(value="backend/updateUser.html",method=RequestMethod.POST)
+		@ResponseBody
+		public String updateUserPage(HttpSession session,User user){
+			
+			try {
+				userService.updateById(user);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return "";
+		}
 }
 
 

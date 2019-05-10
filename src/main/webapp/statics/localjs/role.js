@@ -190,4 +190,76 @@ $('.addrolecancel').click(function(e) {
 });
 
 
+function updateRoleFun(id) {
+	$.ajax({
+		type : "POST",
+		url : "role/backend/getRole.html",
+		data : {
+			id : id
+		},
+		dataType : "html",
+		timeout : 1000,
+		error : function() {
+			alert("error");
+		},
+		success : function(result) {
+			if ("failed" == result) {
+				alert("操作超时！");
+			} else if ("nodata" == result) {
+				alert("没有数据！");
+			} else {
+				m = eval('(' + result + ')');
+				$("#updateId").val(m.id);
+				$("#useable").val(m.useable);
+				$("#updateenname").val(m.enname);
+				$("#updateisSys").val(m.isSys);
+				$("#updateroleType").val(m.roleType);
+				$("#updatename").val(m.name);
+				$("#updateremarks").val(m.remarks);
+				
+				$('#updateRoleDiv').modal('show');
+			}
+		}
+	});
+}
+
+
+
+$('#updateRoleBtn').click(function(e) {
+	// addUserFunction
+	$.ajax({
+		type : "POST",
+		url : "role/backend/updateRole.html",
+		data : {
+			id : $.trim($("#updateId").val()),
+			useable : $.trim($("#useable").val()),
+			enname : $.trim($("#updateenname").val()),
+			is_sys : $.trim($("#updateisSys").val()),
+			role_type : $.trim($("#updateroleType").val()),
+			name : $.trim($("#updatename").val()),
+			remarks : $.trim($("#updateremarks").val())
+		// 最后一个不需要逗号
+
+		},
+		dataType : "html",
+		timeout : 1000,
+		error : function() {
+		},
+		success : function(result) {
+			$('#updateRoleDiv').modal('hide');
+			window.location.href = "role/backend/roleList.html";
+		},
+	});
+});
+	
+$('.updaterolecancel').click(function(e) {
+	$("#updateId").val('');          
+	$("#useable").val('');    
+	$("#updateenname").val('');    
+	$("#updateisSys").val('');    
+	$("#updateroleType").val('');       
+	$("#updatename").val('');    
+	$("#updateremarks").val('');     
+});
+
 

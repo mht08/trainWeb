@@ -26,6 +26,9 @@ public interface UserDao {
 	
 	//根据id获取用户
 	public Integer delUserById(int id);
+	
+	//修改用户信息
+	public Integer  updateById(User user);
 
 }
 

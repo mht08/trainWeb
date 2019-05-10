@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import cn.train.dao.MenuDao;
 import cn.train.entity.Menu;
+import cn.train.entity.Traininfo;
 import cn.train.service.MenuService;
 
 @Service("menuService")
@@ -26,19 +27,28 @@ public class MenuServiceImpl implements MenuService {
 		return menuDao.getMenuById(id);
 	}
 
-	
-	public int deletemenuByids(String[] selectIds){
+	public int deletemenuByids(String[] selectIds) {
 		int num = 0;
-		for(int i = 0; i < selectIds.length; i++){
-			num += menuDao.deleteMenuById(Integer.parseInt(selectIds[i]));
+		List<Menu> menu = menuDao.getMenuByIds(selectIds);
+		for (Menu menu2 : menu) {
+			String parentIds = menu2.getParentIds() + menu2.getId() + ",";
+			num += menuDao.deleteMenuByParentIds(parentIds, menu2.getId());
 		}
+
 		return num;
-	}
+		
+		}
 
 	@Override
 	public int addMenu(Menu menu) {
 		// TODO Auto-generated method stub
 		return menuDao.addMenu(menu);
+	}
+
+	@Override
+	public Integer updateById(Menu menu) {
+		// TODO Auto-generated method stub
+		return menuDao.updateById(menu);
 	}
 
 }
