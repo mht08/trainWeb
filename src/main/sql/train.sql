@@ -152,3 +152,60 @@ CREATE TABLE `sys_user_menu` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户-菜单';
 
 
+DROP TABLE IF EXISTS `tb_order`;
+CREATE TABLE `tb_order` (  
+  `id` int(11) AUTO_INCREMENT COMMENT '订单id',  
+  `payment` varchar(50) COLLATE utf8_bin DEFAULT NULL COMMENT '实付金额。精确到2位小数;单位:元。如:200.07，表示:200元7分',  
+  `payment_type` int(2) DEFAULT NULL COMMENT '支付类型，1、在线支付，2、货到付款',  
+  `post_fee` varchar(50) COLLATE utf8_bin DEFAULT NULL COMMENT '邮费。精确到2位小数;单位:元。如:200.07，表示:200元7分',  
+  `status` int(10) DEFAULT NULL COMMENT '状态：1、未付款，2、已付款，3、未发货，4、已发货，5、交易成功，6、交易关闭',  
+  `create_time` datetime DEFAULT NULL COMMENT '订单创建时间',  
+  `update_time` datetime DEFAULT NULL COMMENT '订单更新时间',  
+  `payment_time` datetime DEFAULT NULL COMMENT '付款时间',  
+  `consign_time` datetime DEFAULT NULL COMMENT '发货时间',  
+  `end_time` datetime DEFAULT NULL COMMENT '交易完成时间',  
+  `close_time` datetime DEFAULT NULL COMMENT '交易关闭时间',  
+  `shipping_name` varchar(20) COLLATE utf8_bin DEFAULT NULL COMMENT '物流名称',  
+  `shipping_code` varchar(20) COLLATE utf8_bin DEFAULT NULL COMMENT '物流单号',  
+  `user_id` bigint(20) DEFAULT NULL COMMENT '用户id',  
+  `buyer_message` varchar(100) COLLATE utf8_bin DEFAULT NULL COMMENT '买家留言',  
+  `buyer_nick` varchar(50) COLLATE utf8_bin DEFAULT NULL COMMENT '买家昵称',  
+  `buyer_rate` int(2) DEFAULT NULL COMMENT '买家是否已经评价',  
+  PRIMARY KEY (`id`),  
+  KEY `create_time` (`create_time`),  
+  KEY `buyer_nick` (`buyer_nick`),  
+  KEY `status` (`status`),  
+  KEY `payment_type` (`payment_type`)  
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='订单基本信息表' ;
+
+DROP TABLE IF EXISTS `tb_order_item`;
+CREATE TABLE `tb_order_item` ( 
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `item_id` int(11) DEFAULT NULL COMMENT '商品id',  
+  `order_id` int(11) NOT NULL COMMENT '订单id',  
+  `num` int(10) DEFAULT NULL COMMENT '商品购买数量',  
+  `title` varchar(200) COLLATE utf8_bin DEFAULT NULL COMMENT '商品标题',  
+  `price` bigint(50) DEFAULT NULL COMMENT '商品单价',  
+  `total_fee` bigint(50) DEFAULT NULL COMMENT '商品总金额',  
+  `pic_path` varchar(600) COLLATE utf8_bin DEFAULT NULL COMMENT '商品图片地址',  
+  PRIMARY KEY (`id`),
+  KEY `order_id` (`order_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='订单商品表' ;
+
+DROP TABLE IF EXISTS `tb_order_shipping`;
+CREATE TABLE `tb_order_shipping` (  
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `order_id` int(11) NOT NULL  COMMENT '订单ID',  
+  `receiver_name` varchar(20) DEFAULT NULL COMMENT '收货人全名',  
+  `receiver_phone` varchar(20) DEFAULT NULL COMMENT '固定电话',  
+  `receiver_mobile` varchar(30) DEFAULT NULL COMMENT '移动电话',  
+  `receiver_state` varchar(10) DEFAULT NULL COMMENT '省份',  
+  `receiver_city` varchar(10) DEFAULT NULL COMMENT '城市',  
+  `receiver_district` varchar(20) DEFAULT NULL COMMENT '区/县',  
+  `receiver_address` varchar(200) DEFAULT NULL COMMENT '收货地址，如：xx路xx号',  
+  `receiver_zip` varchar(6) DEFAULT NULL COMMENT '邮政编码,如：310001',  
+  `created` datetime DEFAULT NULL,  
+  `updated` datetime DEFAULT NULL,  
+  PRIMARY KEY (`id`),
+  KEY `order_id` (`order_id`)  
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='订单用户基本信息表'  ;
