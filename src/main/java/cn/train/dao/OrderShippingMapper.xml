@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.train.dao.RoleDao">
+
+	<!-- 通过<resultMap>映射实体类属性名和表的字段名对应关系 -->
+	<resultMap id="OrderShippingMapping" type="OrderShipping">
+		<!-- id属性来映射主键字段 -->
+		<id column="id" property="id" javaType="Long" />
+		<!-- result属性映射非主键字段 -->
+		<result column="order_id" property="orderId" javaType="Long" />
+		<result column="receiver_name" property="receiverName" javaType="String" />
+		<result column="receiver_phone" property="receiverPhone" javaType="String" />
+		<result column="receiver_mobile" property="receiverMobile" javaType="String" />
+		<result column="receiver_state" property="receiverState" javaType="String" />
+		<result column="receiver_city" property="receiverCity" javaType="String" />
+		<result column="receiver_district" property="receiverDistrict" javaType="String" />
+		<result column="receiver_address" property="receiverAddress" javaType="Date" />
+		<result column="receiver_zip" property="receiverZip" javaType="String" />
+		
+	</resultMap>
+
+	<select id="getOrderShipping" resultMap="OrderShippingMapping">
+		SELECT * from
+		tb_order_shipping
+	</select>
+	<select id="getOrderShippingById" resultMap="OrderShippingMapping">
+		SELECT * from
+		tb_order_shipping
+		where id = #{id}
+	</select>
+	<insert id="addOrderShipping" parameterType="OrderShipping">
+		insert into tb_order_shipping
+		(
+		order_id
+		receiver_name
+		receiver_phone
+		receiver_mobile
+		receiver_state
+		receiver_city
+		receiver_district
+		receiver_address
+		receiver_zip
+		) values (
+		#{orderId },
+		#{receiverName },
+		#{receiverPhone },
+		#{receiverMobile },
+		#{receiverState },
+		#{receiverCity },
+		#{receiverDistrict },
+		#{receiverAddress },
+		#{receiverZip },
+		)
+	</insert>
+	<delete id="deleteOrderShippingById" parameterType="int">
+		delete from
+		tb_order_shipping
+		where id = #{id}
+	</delete>
+	<update id="updateOrderShippingById" parameterType="OrderShipping">
+		UPDATE tb_order_shipping
+		<set>
+			<if test="null != receiverName and '' != receiverName">
+				receiver_name = #{receiverName},
+			</if>
+			<if test="null != receiverPhone and '' != receiverPhone">
+				receiver_phone = #{receiverPhone},
+			</if>
+			<if test="null != receiverMobile and '' != receiverMobile">
+				receiver_mobile=#{receiverMobile},
+			</if>
+			<if test="null != receiverState and '' != receiverState">
+				receiver_state=#{receiverState},
+			</if>
+			<if test="null != receiverCity and '' != receiverCity">
+				receiver_city=#{receiverCity},
+			</if>
+			<if test="null != receiverDistrict and '' != receiverDistrict">
+				receiver_district=#{receiverDistrict},
+			</if>
+		</set>
+		WHERE id =#{id}
+
+	</update>
+</mapper>

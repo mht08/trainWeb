@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.train.dao.OrderDao">
+
+	<!-- 通过<resultMap>映射实体类属性名和表的字段名对应关系 -->
+	<resultMap id="OrderMapping" type="Order">
+		<!-- id属性来映射主键字段 -->
+		<id column="id" property="id" javaType="Long" />
+		<!-- result属性映射非主键字段 -->
+		<result column="payment" property="payment" javaType="String" />
+		<result column="payment_type" property="paymentType" javaType="String" />
+		<result column="post_fee" property="postFee" javaType="String" />
+		<result column="status" property="status" javaType="String" />
+		<result column="create_time" property="createTime" javaType="Date" />
+		<result column="update_time" property="updateTime" javaType="Date" />
+		<result column="payment_time" property="paymentTime" javaType="Date" />
+		<result column="end_time" property="endTime" javaType="Date" />
+		<result column="close_time" property="closeTime" javaType="Date" />
+		<result column="consign_time" property="consignTime" javaType="Date" />
+		<result column="shipping_name" property="shippingName"
+			javaType="String" />
+		<result column="shipping_code" property="shippingCode"
+			javaType="String" />
+		<result column="user_id" property="userId" javaType="Long" />
+		<result column="buyer_message" property="buyerMessage"
+			javaType="String" />
+		<result column="buyer_nick" property="buyerNick" javaType="String" />
+		<result column="buyer_rate" property="buyerRate" javaType="Integer" />
+
+	</resultMap>
+
+	<select id="getOrderList" resultMap="OrderMapping">
+		SELECT * from tb_order
+	</select>
+	<select id="getOrder" resultMap="OrderMapping">
+		SELECT * from tb_order where id
+		= #{id}
+	</select>
+	<insert id="addOrder" parameterType="Order" useGeneratedKeys="true" keyProperty="id">
+		insert into tb_order (
+		payment,
+		payment_type,
+		post_fee,
+		status,
+		create_time,
+		update_time,
+		payment_time,
+		consign_time,
+		end_time,
+		close_time,
+		shipping_name,
+		shipping_code,
+		user_id,
+		buyer_message,
+		buyer_nick,
+		buyer_rate
+	) values (
+		#{ payment },
+		#{ paymentType},
+		#{ postFee },
+		#{ status },
+		now(),
+		now(),
+		now(),
+		now(),
+		now(),
+		now(),
+		#{ shippingName},
+		#{ shippingCode},
+		#{ userId },
+		#{ buyerMessage},
+		#{ buyerNick},
+		#{ buyerRate }
+		)
+	</insert>
+	<delete id="deleteOrderById" parameterType="Long">
+		delete from tb_order
+		where id = #{id}
+	</delete>
+	<update id="updateOrderById" parameterType="Order">
+		UPDATE tb_order
+		<set>
+			<if test="null != payment and '' != payment">
+				payment = #{payment},
+			</if>
+			<if test="null != paymentType and '' != paymentType">
+				payment_type = #{paymentType},
+			</if>
+			<if test="null != postFee and '' != postFee">
+				post_fee=#{postFee},
+			</if>
+			<if test="null != status and '' != status">
+				status=#{status},
+			</if>
+			<if test="null != shippingName and '' != shippingName">
+				shipping_name=#{shippingName},
+			</if>
+			<if test="null != shippingCode and '' != shippingCode">
+				shipping_code=#{shippingCode},
+			</if>
+		</set>
+		WHERE id =#{id}
+
+	</update>
+</mapper>

@@ -106,8 +106,8 @@ body {
 						    <span class="hidden-tablet">角色信息管理</span></a></li>
 						<li><a class="ajax-link" href="love.html"><i class="icon-home"></i>
 						    <span class="hidden-tablet">LOVE</span></a></li>
-						<li><a class="ajax-link" href="javascript:void();"><i class="icon-home"></i>
-						    <span class="hidden-tablet">xxx信息管理</span></a></li>
+						<li><a class="ajax-link" href="order/orderList.html""><i class="icon-home"></i>
+						    <span class="hidden-tablet">订单信息管理</span></a></li>
 						<li><a class="ajax-link" href="javascript:void();"><i class="icon-home"></i>
 						    <span class="hidden-tablet">xxx信息管理</span></a></li>
 					</ul>

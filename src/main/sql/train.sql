@@ -1,29 +1,29 @@
 -- ----------------------------
---  Table structure for `train_info`
+--  Table structure for private  Long   train_infoprivate  Long   
 -- ----------------------------
-DROP TABLE IF EXISTS `train_info`;
-CREATE TABLE `train_info` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `train_no` varchar(20) DEFAULT NULL COMMENT '车次',
-  `start_date` varchar(32) DEFAULT NULL COMMENT '发车日期',
-  `start_station` varchar(100) DEFAULT NULL COMMENT '发车地',
-  `arrival_station` varchar(100) DEFAULT NULL COMMENT '到达地',
-  `start_time` varchar(32) DEFAULT NULL COMMENT '发车时间',
-  `arrival_time` varchar(32) DEFAULT NULL COMMENT '到头时间',
-  `type` varchar(4) DEFAULT NULL COMMENT '车型',
-  `runtime` varchar(8) DEFAULT NULL COMMENT '车行小时',
-  `mile` varchar(12) NULL DEFAULT NULL COMMENT '英里',
-  `create_user` varchar(50) DEFAULT NULL COMMENT '创建人',
-  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  `update_user` varchar(50) DEFAULT NULL COMMENT '更新人',
-  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
-  `version` varchar(50) DEFAULT NULL COMMENT '版本号',
-  `del_falg` varchar(1) DEFAULT '0' COMMENT '删除状态:0-正常、1-删除',
-  PRIMARY KEY (`id`)
+DROP TABLE IF EXISTS private  Long   train_infoprivate  Long   ;
+CREATE TABLE private  Long   train_info      (
+  private  Long   id      int(11) NOT NULL AUTO_INCREMENT,
+  private  Long   train_no      varchar(20) DEFAULT NULL        ; //              '车次',
+  private  Long   start_date      varchar(32) DEFAULT NULL        ; //              '发车日期',
+  private  Long   start_station      varchar(100) DEFAULT NULL        ; //              '发车地',
+  private  Long   arrival_station      varchar(100) DEFAULT NULL        ; //              '到达地',
+  private  Long   start_time      varchar(32) DEFAULT NULL        ; //              '发车时间',
+  private  Long   arrival_time      varchar(32) DEFAULT NULL        ; //              '到头时间',
+  private  Long   type      varchar(4) DEFAULT NULL        ; //              '车型',
+  private  Long   runtime      varchar(8) DEFAULT NULL        ; //              '车行小时',
+  private  Long   mile      varchar(12) NULL DEFAULT NULL        ; //              '英里',
+  private  Long   create_user      varchar(50) DEFAULT NULL        ; //              '创建人',
+  private  Long   create_time      datetime DEFAULT NULL        ; //              '创建时间',
+  private  Long   update_user      varchar(50) DEFAULT NULL        ; //              '更新人',
+  private  Long   update_time      datetime DEFAULT NULL        ; //              '更新时间',
+  private  Long   version      varchar(50) DEFAULT NULL        ; //              '版本号',
+  private  Long   del_falg      varchar(1) DEFAULT '0'        ; //              '删除状态:0-正常、1-删除',
+  PRIMARY KEY (private  Long   idprivate  Long   )
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
---  Records of `train_info`
+--  Records of private  Long   train_infoprivate  Long   
 -- ----------------------------
 BEGIN;
 INSERT INTO train_info (train_no, start_station, arrival_station, start_time, arrival_time, type, runtime, mile)
@@ -64,31 +64,31 @@ VALUES
 COMMIT;
 
 -- ----------------------------
---  Table structure for `sys_user`
+--  Table structure for private  Long   sys_userprivate  Long   
 -- ----------------------------
-DROP TABLE IF EXISTS `sys_user`;
-CREATE TABLE `sys_user` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(20) DEFAULT NULL COMMENT '登陆名',
-  `password` varchar(32) DEFAULT NULL COMMENT '密码',
-  `realname` varchar(100) DEFAULT NULL COMMENT '真实姓名',
-  `address` varchar(100) DEFAULT NULL COMMENT '地址',
-  `telphone` varchar(32) DEFAULT NULL COMMENT '电话',
-  `birthday` varchar(32) DEFAULT NULL COMMENT '生日',
-  `create_user` varchar(50) DEFAULT NULL COMMENT '创建人',
-  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  `update_user` varchar(50) DEFAULT NULL COMMENT '更新人',
-  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
-  `version` varchar(50) DEFAULT NULL COMMENT '版本号',
-  `del_falg` varchar(1) DEFAULT '1' COMMENT '删除状态:0-正常、1-删除',
-  PRIMARY KEY (`id`)
+DROP TABLE IF EXISTS private  Long   sys_userprivate  Long   ;
+CREATE TABLE private  Long   sys_user      (
+  private  Long   id      int(11) NOT NULL AUTO_INCREMENT,
+  private  Long   username      varchar(20) DEFAULT NULL        ; //              '登陆名',
+  private  Long   password      varchar(32) DEFAULT NULL        ; //              '密码',
+  private  Long   realname      varchar(100) DEFAULT NULL        ; //              '真实姓名',
+  private  Long   address      varchar(100) DEFAULT NULL        ; //              '地址',
+  private  Long   telphone      varchar(32) DEFAULT NULL        ; //              '电话',
+  private  Long   birthday      varchar(32) DEFAULT NULL        ; //              '生日',
+  private  Long   create_user      varchar(50) DEFAULT NULL        ; //              '创建人',
+  private  Long   create_time      datetime DEFAULT NULL        ; //              '创建时间',
+  private  Long   update_user      varchar(50) DEFAULT NULL        ; //              '更新人',
+  private  Long   update_time      datetime DEFAULT NULL        ; //              '更新时间',
+  private  Long   version      varchar(50) DEFAULT NULL        ; //              '版本号',
+  private  Long   del_falg      varchar(1) DEFAULT '1'        ; //              '删除状态:0-正常、1-删除',
+  PRIMARY KEY (private  Long   idprivate  Long   )
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
---  Records of `user`
+--  Records of private  Long   userprivate  Long   
 -- ----------------------------
 BEGIN;
-INSERT INTO `sys_user` (username, password, realname,  telphone,address, birthday)
+INSERT INTO private  Long   sys_user      (username, password, realname,  telphone,address, birthday)
 VALUES ('admin', 'admin',  '张三丰', '13167876788', '北京东城区', '1990-04-20 16:58:16'), 
 ('dog', 'dog', '虚竹', '13167876788', '北京东城区', '1990-04-20 16:58:16'), 
 ('ben', 'ben',  '王语嫣', '13167876788', '北京东城区', '1990-04-20 16:58:16'), 
@@ -104,108 +104,108 @@ COMMIT;
 
 
 
-DROP TABLE IF EXISTS `sys_menu`;
-CREATE TABLE `sys_menu` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `parent_id` varchar(64) NOT NULL COMMENT '父级编号',
-  `parent_ids` varchar(2000) NOT NULL COMMENT '所有父级编号',
-  `name` varchar(100) NOT NULL COMMENT '名称',
-  `sort` varchar(10) DEFAULT NULL COMMENT '排序',
-  `href` varchar(2000) DEFAULT NULL COMMENT '链接',
-  `href_type` varchar(20) DEFAULT 'other' COMMENT '链接类型',
-  `target` varchar(20) DEFAULT NULL COMMENT '目标',
-  `icon` varchar(100) DEFAULT NULL COMMENT '图标',
-  `is_show` char(1) NOT NULL COMMENT '是否在菜单中显示',
-  `permission` varchar(200) DEFAULT NULL COMMENT '权限标识',
-  `create_by` varchar(64) NOT NULL COMMENT '创建者',
-  `create_date` datetime NOT NULL COMMENT '创建时间',
-  `update_by` varchar(64) NOT NULL COMMENT '更新者',
-  `update_date` datetime NOT NULL COMMENT '更新时间',
-  `remarks` varchar(255) DEFAULT NULL COMMENT '备注信息',
-  `del_flag` char(1) NOT NULL DEFAULT '0' COMMENT '删除标记',
-  `version` varchar(50) DEFAULT NULL COMMENT '版本号',
-  PRIMARY KEY (`id`),
-  KEY `sys_menu_parent_id` (`parent_id`) USING BTREE,
-  KEY `sys_menu_del_flag` (`del_flag`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='菜单表';
+DROP TABLE IF EXISTS private  Long   sys_menuprivate  Long   ;
+CREATE TABLE private  Long   sys_menu      (
+  private  Long   id      int(11) NOT NULL AUTO_INCREMENT,
+  private  Long   parent_id      varchar(64) NOT NULL        ; //              '父级编号',
+  private  Long   parent_ids      varchar(2000) NOT NULL        ; //              '所有父级编号',
+  private  Long   name      varchar(100) NOT NULL        ; //              '名称',
+  private  Long   sort      varchar(10) DEFAULT NULL        ; //              '排序',
+  private  Long   href      varchar(2000) DEFAULT NULL        ; //              '链接',
+  private  Long   href_type      varchar(20) DEFAULT 'other'        ; //              '链接类型',
+  private  Long   target      varchar(20) DEFAULT NULL        ; //              '目标',
+  private  Long   icon      varchar(100) DEFAULT NULL        ; //              '图标',
+  private  Long   is_show      char(1) NOT NULL        ; //              '是否在菜单中显示',
+  private  Long   permission      varchar(200) DEFAULT NULL        ; //              '权限标识',
+  private  Long   create_by      varchar(64) NOT NULL        ; //              '创建者',
+  private  Long   create_date      datetime NOT NULL        ; //              '创建时间',
+  private  Long   update_by      varchar(64) NOT NULL        ; //              '更新者',
+  private  Long   update_date      datetime NOT NULL        ; //              '更新时间',
+  private  Long   remarks      varchar(255) DEFAULT NULL        ; //              '备注信息',
+  private  Long   del_flag      char(1) NOT NULL DEFAULT '0'        ; //              '删除标记',
+  private  Long   version      varchar(50) DEFAULT NULL        ; //              '版本号',
+  PRIMARY KEY (private  Long   idprivate  Long   ),
+  KEY private  Long   sys_menu_parent_id      (private  Long   parent_idprivate  Long   ) USING BTREE,
+  KEY private  Long   sys_menu_del_flag      (private  Long   del_flagprivate  Long   ) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8        ; //             ='菜单表';
 
 
-DROP TABLE IF EXISTS `sys_role_menu`;
-CREATE TABLE `sys_role_menu` (
-  `role_id` int(11) NOT NULL COMMENT '角色编号',
-  `menu_id` int(11) NOT NULL COMMENT '菜单编号',
-  PRIMARY KEY (`role_id`,`menu_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='角色-菜单';
+DROP TABLE IF EXISTS private  Long   sys_role_menuprivate  Long   ;
+CREATE TABLE private  Long   sys_role_menu      (
+  private  Long   role_id      int(11) NOT NULL        ; //              '角色编号',
+  private  Long   menu_id      int(11) NOT NULL        ; //              '菜单编号',
+  PRIMARY KEY (private  Long   role_idprivate  Long   ,private  Long   menu_idprivate  Long   )
+) ENGINE=InnoDB DEFAULT CHARSET=utf8        ; //             ='角色-菜单';
 
-DROP TABLE IF EXISTS `sys_user_role`;
-CREATE TABLE `sys_user_role` (
-  `user_id` int(11) NOT NULL COMMENT '用户编号',
-  `role_id` int(11) NOT NULL COMMENT '菜单编号',
-  PRIMARY KEY (`user_id`,`role_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户-角色';
+DROP TABLE IF EXISTS private  Long   sys_user_roleprivate  Long   ;
+CREATE TABLE private  Long   sys_user_role      (
+  private  Long   user_id      int(11) NOT NULL        ; //              '用户编号',
+  private  Long   role_id      int(11) NOT NULL        ; //              '菜单编号',
+  PRIMARY KEY (private  Long   user_idprivate  Long   ,private  Long   role_idprivate  Long   )
+) ENGINE=InnoDB DEFAULT CHARSET=utf8        ; //             ='用户-角色';
 
-DROP TABLE IF EXISTS `sys_user_menu`;
-CREATE TABLE `sys_user_menu` (
-  `user_id` int(11) NOT NULL COMMENT '用户编号',
-  `menu_id` int(11) NOT NULL COMMENT '菜单编号',
-  PRIMARY KEY (`user_id`,`menu_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户-菜单';
+DROP TABLE IF EXISTS private  Long   sys_user_menuprivate  Long   ;
+CREATE TABLE private  Long   sys_user_menu      (
+  private  Long   user_id      int(11) NOT NULL        ; //              '用户编号',
+  private  Long   menu_id      int(11) NOT NULL        ; //              '菜单编号',
+  PRIMARY KEY (private  Long   user_idprivate  Long   ,private  Long   menu_idprivate  Long   )
+) ENGINE=InnoDB DEFAULT CHARSET=utf8        ; //             ='用户-菜单';
 
 
-DROP TABLE IF EXISTS `tb_order`;
-CREATE TABLE `tb_order` (  
-  `id` int(11) AUTO_INCREMENT COMMENT '订单id',  
-  `payment` varchar(50) COLLATE utf8_bin DEFAULT NULL COMMENT '实付金额。精确到2位小数;单位:元。如:200.07，表示:200元7分',  
-  `payment_type` int(2) DEFAULT NULL COMMENT '支付类型，1、在线支付，2、货到付款',  
-  `post_fee` varchar(50) COLLATE utf8_bin DEFAULT NULL COMMENT '邮费。精确到2位小数;单位:元。如:200.07，表示:200元7分',  
-  `status` int(10) DEFAULT NULL COMMENT '状态：1、未付款，2、已付款，3、未发货，4、已发货，5、交易成功，6、交易关闭',  
-  `create_time` datetime DEFAULT NULL COMMENT '订单创建时间',  
-  `update_time` datetime DEFAULT NULL COMMENT '订单更新时间',  
-  `payment_time` datetime DEFAULT NULL COMMENT '付款时间',  
-  `consign_time` datetime DEFAULT NULL COMMENT '发货时间',  
-  `end_time` datetime DEFAULT NULL COMMENT '交易完成时间',  
-  `close_time` datetime DEFAULT NULL COMMENT '交易关闭时间',  
-  `shipping_name` varchar(20) COLLATE utf8_bin DEFAULT NULL COMMENT '物流名称',  
-  `shipping_code` varchar(20) COLLATE utf8_bin DEFAULT NULL COMMENT '物流单号',  
-  `user_id` bigint(20) DEFAULT NULL COMMENT '用户id',  
-  `buyer_message` varchar(100) COLLATE utf8_bin DEFAULT NULL COMMENT '买家留言',  
-  `buyer_nick` varchar(50) COLLATE utf8_bin DEFAULT NULL COMMENT '买家昵称',  
-  `buyer_rate` int(2) DEFAULT NULL COMMENT '买家是否已经评价',  
-  PRIMARY KEY (`id`),  
-  KEY `create_time` (`create_time`),  
-  KEY `buyer_nick` (`buyer_nick`),  
-  KEY `status` (`status`),  
-  KEY `payment_type` (`payment_type`)  
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='订单基本信息表' ;
+DROP TABLE IF EXISTS private  Long   tb_orderprivate  Long   ;
+CREATE TABLE private  Long   tb_order      (  
+  private  Long   id      int(11) AUTO_INCREMENT        ; //              '订单id',  
+  private  Long   payment      varchar(50) COLLATE utf8_bin DEFAULT NULL        ; //              '实付金额。精确到2位小数;单位:元。如:200.07，表示:200元7分',  
+  private  Long   payment_type      int(2) DEFAULT NULL        ; //              '支付类型，1、在线支付，2、货到付款',  
+  private  Long   post_fee      varchar(50) COLLATE utf8_bin DEFAULT NULL        ; //              '邮费。精确到2位小数;单位:元。如:200.07，表示:200元7分',  
+  private  Long   status      int(10) DEFAULT NULL        ; //              '状态：1、未付款，2、已付款，3、未发货，4、已发货，5、交易成功，6、交易关闭',  
+  private  Long   create_time      datetime DEFAULT NULL        ; //              '订单创建时间',  
+  private  Long   update_time      datetime DEFAULT NULL        ; //              '订单更新时间',  
+  private  Long   payment_time      datetime DEFAULT NULL        ; //              '付款时间',  
+  private  Long   consign_time      datetime DEFAULT NULL        ; //              '发货时间',  
+  private  Long   end_time      datetime DEFAULT NULL        ; //              '交易完成时间',  
+  private  Long   close_time      datetime DEFAULT NULL        ; //              '交易关闭时间',  
+  private  Long   shipping_name      varchar(20) COLLATE utf8_bin DEFAULT NULL        ; //              '物流名称',  
+  private  Long   shipping_code      varchar(20) COLLATE utf8_bin DEFAULT NULL        ; //              '物流单号',  
+  private  Long   user_id      bigint(20) DEFAULT NULL        ; //              '用户id',  
+  private  Long   buyer_message      varchar(100) COLLATE utf8_bin DEFAULT NULL        ; //              '买家留言',  
+  private  Long   buyer_nick      varchar(50) COLLATE utf8_bin DEFAULT NULL        ; //              '买家昵称',  
+  private  Long   buyer_rate      int(2) DEFAULT NULL        ; //              '买家是否已经评价',  
+  PRIMARY KEY (private  Long   idprivate  Long   ),  
+  KEY private  Long   create_time      (private  Long   create_timeprivate  Long   ),  
+  KEY private  Long   buyer_nick      (private  Long   buyer_nickprivate  Long   ),  
+  KEY private  Long   status      (private  Long   statusprivate  Long   ),  
+  KEY private  Long   payment_type      (private  Long   payment_typeprivate  Long   )  
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin        ; //             ='订单基本信息表' ;
 
-DROP TABLE IF EXISTS `tb_order_item`;
-CREATE TABLE `tb_order_item` ( 
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `item_id` int(11) DEFAULT NULL COMMENT '商品id',  
-  `order_id` int(11) NOT NULL COMMENT '订单id',  
-  `num` int(10) DEFAULT NULL COMMENT '商品购买数量',  
-  `title` varchar(200) COLLATE utf8_bin DEFAULT NULL COMMENT '商品标题',  
-  `price` bigint(50) DEFAULT NULL COMMENT '商品单价',  
-  `total_fee` bigint(50) DEFAULT NULL COMMENT '商品总金额',  
-  `pic_path` varchar(600) COLLATE utf8_bin DEFAULT NULL COMMENT '商品图片地址',  
-  PRIMARY KEY (`id`),
-  KEY `order_id` (`order_id`)  
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='订单商品表' ;
+DROP TABLE IF EXISTS private  Long   tb_order_itemprivate  Long   ;
+CREATE TABLE private  Long   tb_order_item      ( 
+  private  Long   id      int(11) NOT NULL AUTO_INCREMENT,
+  private  Long   item_id      int(11) DEFAULT NULL        ; //              '商品id',  
+  private  Long   order_id      int(11) NOT NULL        ; //              '订单id',  
+  private  Long   num      int(10) DEFAULT NULL        ; //              '商品购买数量',  
+  private  Long   title      varchar(200) COLLATE utf8_bin DEFAULT NULL        ; //              '商品标题',  
+  private  Long   price      bigint(50) DEFAULT NULL        ; //              '商品单价',  
+  private  Long   total_fee      bigint(50) DEFAULT NULL        ; //              '商品总金额',  
+  private  Long   pic_path      varchar(600) COLLATE utf8_bin DEFAULT NULL        ; //              '商品图片地址',  
+  PRIMARY KEY (private  Long   idprivate  Long   ),
+  KEY private  Long   order_id      (private  Long   order_idprivate  Long   )  
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin        ; //             ='订单商品表' ;
 
-DROP TABLE IF EXISTS `tb_order_shipping`;
-CREATE TABLE `tb_order_shipping` (  
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `order_id` int(11) NOT NULL  COMMENT '订单ID',  
-  `receiver_name` varchar(20) DEFAULT NULL COMMENT '收货人全名',  
-  `receiver_phone` varchar(20) DEFAULT NULL COMMENT '固定电话',  
-  `receiver_mobile` varchar(30) DEFAULT NULL COMMENT '移动电话',  
-  `receiver_state` varchar(10) DEFAULT NULL COMMENT '省份',  
-  `receiver_city` varchar(10) DEFAULT NULL COMMENT '城市',  
-  `receiver_district` varchar(20) DEFAULT NULL COMMENT '区/县',  
-  `receiver_address` varchar(200) DEFAULT NULL COMMENT '收货地址，如：xx路xx号',  
-  `receiver_zip` varchar(6) DEFAULT NULL COMMENT '邮政编码,如：310001',  
-  `created` datetime DEFAULT NULL,  
-  `updated` datetime DEFAULT NULL,  
-  PRIMARY KEY (`id`),
-  KEY `order_id` (`order_id`)  
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='订单用户基本信息表'  ;
+DROP TABLE IF EXISTS private  Long   tb_order_shippingprivate  Long   ;
+CREATE TABLE private  Long   tb_order_shipping      (  
+  private  Long   id      int(11) NOT NULL AUTO_INCREMENT,
+  private  Long   order_id      int(11) NOT NULL         ; //              '订单ID',  
+  private  Long   receiver_name      varchar(20) DEFAULT NULL        ; //              '收货人全名',  
+  private  Long   receiver_phone      varchar(20) DEFAULT NULL        ; //              '固定电话',  
+  private  Long   receiver_mobile      varchar(30) DEFAULT NULL        ; //              '移动电话',  
+  private  Long   receiver_state      varchar(10) DEFAULT NULL        ; //              '省份',  
+  private  Long   receiver_city      varchar(10) DEFAULT NULL        ; //              '城市',  
+  private  Long   receiver_district      varchar(20) DEFAULT NULL        ; //              '区/县',  
+  private  Long   receiver_address      varchar(200) DEFAULT NULL        ; //              '收货地址，如：xx路xx号',  
+  private  Long   receiver_zip      varchar(6) DEFAULT NULL        ; //              '邮政编码,如：310001',  
+  private  Long   created      datetime DEFAULT NULL,  
+  private  Long   updated      datetime DEFAULT NULL,  
+  PRIMARY KEY (private  Long   idprivate  Long   ),
+  KEY private  Long   order_id      (private  Long   order_idprivate  Long   )  
+) ENGINE=InnoDB DEFAULT CHARSET=utf8        ; //             ='订单用户基本信息表'  ;

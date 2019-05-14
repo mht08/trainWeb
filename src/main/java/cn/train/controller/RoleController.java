@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import cn.train.entity.Menu;
+
 import cn.train.entity.Role;
-import cn.train.entity.Traininfo;
+
 import cn.train.service.RoleService;
 
 

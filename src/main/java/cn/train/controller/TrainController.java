@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.train.entity.Traininfo;
-import cn.train.entity.User;
+
 import cn.train.service.TrainService;
 import net.sf.json.JSONObject;
 

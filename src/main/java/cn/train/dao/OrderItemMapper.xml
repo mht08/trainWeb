@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.train.dao.OrderItemDao">
+
+	<!-- 通过<resultMap>映射实体类属性名和表的字段名对应关系 -->
+	<resultMap id="OrderItemMapping" type="OrderItem">
+		<!-- id属性来映射主键字段 -->
+		<id column="id" property="id" javaType="Long" />
+		<!-- result属性映射非主键字段 -->
+		<result column="item_id" property="itemId" javaType="Long" />
+		<result column="order_id" property="orderId" javaType="Long" />
+		<result column="num" property="num" javaType="Integer" />
+		<result column="title" property="title" javaType="String" />
+		<result column="price" property="price" javaType="Long" />
+		<result column="total_fee" property="totalFee" javaType="Long" />
+		<result column="pic_path" property="picPath" javaType="String" />
+		
+	</resultMap>
+
+	<select id="getOderItemAll" resultMap="OrderItemMapping">
+		SELECT * from tb_order_item
+	</select>
+	<select id="getOderItemByorderId" resultMap="OrderItemMapping">
+		SELECT * from
+		tb_order_item where order_id = #{orderId}
+	</select>
+	
+	<select id="getOrderItemById" resultMap="OrderItemMapping" parameterType="Long">
+		SELECT * from
+		tb_order_item where id = #{id}
+	</select>
+	<insert id="addOderItem" parameterType="OrderItem">
+		insert into tb_order_item (
+		item_id,
+		order_id,
+		num,
+		title,
+		price,
+		total_fee,
+		pic_path
+		) values (
+		#{itemId },
+		#{orderId},
+		#{num },
+		#{title },
+		#{price },
+		#{totalFee },
+		#{picPath }
+		)
+	</insert>
+	<delete id="deleteOderItemById" parameterType="Long">
+		delete from tb_order_item
+		where id = #{id}
+	</delete>
+	<update id="updateOderItemById" parameterType="OrderItem">
+		UPDATE tb_order_item
+		<set>
+			<if test="null != itemId and '' != itemId">
+				item_id = #{itemId},
+			</if>
+			<if test="null != orderId and '' != orderId">
+				order_id = #{orderId},
+			</if>
+			<if test="null != num and '' != num">
+				num=#{num},
+			</if>
+			<if test="null != title and '' != title">
+				title=#{title},
+			</if>
+			<if test="null != price and '' != price">
+				price=#{price},
+			</if>
+			<if test="null != totalFee and '' != totalFee">
+				total_fee=#{totalFee},
+			</if>
+		</set>
+		WHERE id =#{id}
+
+	</update>
+</mapper>

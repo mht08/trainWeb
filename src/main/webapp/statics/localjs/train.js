@@ -39,7 +39,7 @@ $("#myDelTrainBtn").click(function(){
 
 
 
-$('.viewtrain').click(function(e){
+$('.vieworder').click(function(e){
 	var m_id = $(this).attr('id');
 	$.ajax({
 		url: 'train/backend/getTrain.html',

@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.train.entity.Menu;
-import cn.train.entity.Role;
+
 import cn.train.service.MenuService;
 
 /*
