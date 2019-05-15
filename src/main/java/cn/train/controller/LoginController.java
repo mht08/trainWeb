@@ -1,9 +1,12 @@
 package cn.train.controller;
 
+import java.util.UUID;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,7 +16,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import cn.train.entity.User;
+import cn.train.redis.RedisUtil;
 import cn.train.service.UserService;
+import cn.train.utils.JsonUtils;
 import net.sf.json.JSONObject;
 
 /*
@@ -23,13 +28,15 @@ import net.sf.json.JSONObject;
  *
  */
 @Controller
-
 public class LoginController {
 	private Logger logger = Logger.getLogger(LoginController.class);
 	
 	@Resource
 	@Qualifier("userService")
 	private UserService userService;
+	
+	@Autowired
+	private RedisUtil redisUtil;
 	
 	//登录请求的处理
 	@RequestMapping("login.html")
@@ -50,6 +57,9 @@ public class LoginController {
 				}else{*/
 				User _user = userService.getLoginUser(userObj);
 				if(_user != null){
+				    String token = UUID.randomUUID().toString().replaceAll("-", "");
+					System.out.println(token);
+				    redisUtil.set(token, JsonUtils.objectToJson(_user));
 					session.setAttribute("user", _user);
 					return "success";
 				}else{
@@ -61,6 +71,12 @@ public class LoginController {
 				return "failed";
 			}
 		}
+	}
+	
+	//登陆页面的处理
+	@RequestMapping("index.html")
+	public ModelAndView index(){
+		return new ModelAndView("index");
 	}
 	
 	//退出请求的处理
