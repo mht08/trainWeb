@@ -23,13 +23,15 @@ $("#loginBtn").click(function() {
 			data : {
 				user : JSON.stringify(user)
 			},
-			dataType : "html",
-			timeout : 1000,
-			error : function() {
+			dataType : "json",
+			/*timeout : 1000,*/
+			error : function(error) {
+				console.log(error);
 				$("#mylogin-tip").css("color", "red");
 				$("#mylogin-tip").html("登录失败，请重试error!");
 			},
 			success : function(result) {
+				console.log(result);
 				if (result == "success") {
 					window.location.href = "main.html";
 				} else if (result == "failed") {

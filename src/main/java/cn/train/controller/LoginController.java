@@ -1,5 +1,7 @@
 package cn.train.controller;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.annotation.Resource;
@@ -15,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import cn.train.common.MessageCode;
+import cn.train.common.ResultObject;
 import cn.train.entity.User;
 import cn.train.redis.RedisUtil;
 import cn.train.service.UserService;
@@ -39,13 +43,15 @@ public class LoginController {
 	private RedisUtil redisUtil;
 	
 	//登录请求的处理
-	@RequestMapping("login.html")
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@RequestMapping(value = "login")
 	@ResponseBody
-	public String login(@RequestParam String user,HttpSession session){
+	public ResultObject login(@RequestParam String user){
 		logger.debug("login.html请求执行了*******************"+user.toString());
-		
+		MessageCode code = MessageCode.CODE_SUCCESS;
+		String token = UUID.randomUUID().toString().replaceAll("-", "");
 		if(user == null || "".equals(user)){
-			return "noData";
+			code = MessageCode.CODE_LOGIN_ERROR;
 		}else{
 			try {
 				JSONObject userObject = JSONObject.fromObject(user);
@@ -57,20 +63,22 @@ public class LoginController {
 				}else{*/
 				User _user = userService.getLoginUser(userObj);
 				if(_user != null){
-				    String token = UUID.randomUUID().toString().replaceAll("-", "");
 					System.out.println(token);
 				    redisUtil.set(token, JsonUtils.objectToJson(_user));
-					session.setAttribute("user", _user);
-					return "success";
+//					session.setAttribute("user", _user);
 				}else{
-					return "noUsername";
+					code = MessageCode.CODE_LOGIN_ERROR;
 				}
 //				}
 			} catch (Exception e) {
 				e.printStackTrace();
-				return "failed";
+				code = MessageCode.CODE_LOGIN_ERROR;
 			}
 		}
+		ResultObject ro = new ResultObject(code);
+		ro.setData(token);
+		return ro;
+		
 	}
 	
 	//登陆页面的处理

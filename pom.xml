@@ -30,6 +30,7 @@
 		<srping.version>4.3.8.RELEASE</srping.version>
 		<mybatis.version>3.2.8</mybatis.version>
 		<log4j.version>1.2.14</log4j.version>
+		<servlet.version>3.0.1</servlet.version>
 	</properties>
 	
 	
@@ -39,7 +40,7 @@
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
-			<version>3.1.0</version>
+			<version>${servlet.version}</version>
 		</dependency>
 		
 				
@@ -243,5 +244,24 @@
 	      <artifactId>jackson-databind</artifactId>
 	      <version>2.6.1</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>17.0</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.fasterxml.jackson.module</groupId>
+			<artifactId>jackson-module-jaxb-annotations</artifactId>
+			<version>2.2.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.3.2</version>
+		</dependency>
+		
 	</dependencies>
 </project>
